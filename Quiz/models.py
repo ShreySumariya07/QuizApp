@@ -13,7 +13,7 @@ class Courses(models.Model):
 
 class Courses(models.Model):
     course_id = models.AutoField(primary_key=True, blank=False)
-    course_name = models.CharField(null=False, blank=False)
+    course_name = models.CharField(max_length=100,null=False, blank=False)
     updated_on = models.DateField(auto_now=True, blank=False)
 
 
@@ -36,7 +36,7 @@ class Quiz_Details(models.Model):
 
 
 class add_question(models.Model):
-    quiz__id = models.ForeignKey(Quiz_Details,on_delete=models.CASCADE)
+    quiz_id1 = models.ForeignKey(Quiz_Details,on_delete=models.CASCADE)
     question_id = models.AutoField(primary_key = True)
     question = models.TextField(max_length=300)
     Choice_1 = models.CharField(max_length=100)
@@ -47,17 +47,17 @@ class add_question(models.Model):
 
 
 class check_answers(models.Model):
-    qu_id = models.ForeignKey(Quiz_Details,on_delete=models.CASCADE)
+    qu_id = models.ForeignKey(Quiz_Details,on_delete=models.CASCADE,related_name="questid")
     ques_id = models.ForeignKey(add_question,on_delete=models.CASCADE)
     st_id = models.ForeignKey(Student,on_delete=models.CASCADE)
     selected_answer = models.CharField(max_length=100)
-    correct_answer = models.ForeignKey(add_question,to_field="question_id",db_column="correct_answer",on_delete=models.CASCADE)
+    correct_answer = models.ForeignKey(add_question,to_field="question_id",db_column="correct_answer",on_delete=models.CASCADE,related_name="correctanswers")
     check_result = models.BooleanField(default=False)
 
 
 class Result(models.Model):
-    q_id = models.ForeignKey(Quiz_Details,on_delete=models.CASCADE)
+    q_id = models.ForeignKey(Quiz_Details,on_delete=models.CASCADE,related_name="quizid")
     s_id = models.ForeignKey(Student,on_delete=models.CASCADE)
     score = models.IntegerField()
-    total_m = models.ForeignKey(Quiz_Details,to_field="total_marks",db_column="total_m",on_delete=models.CASCADE)
+    # total_m = models.ForeignKey(Quiz_Details,to_field="total_marks",db_column="total_m",on_delete=models.CASCADE,related_name="totalmarks")
     status = models.CharField(max_length=100)
