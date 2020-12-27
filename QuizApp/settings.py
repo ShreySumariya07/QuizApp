@@ -16,10 +16,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 AUTH_USER_MODEL = "Account.User"
-AUTH_USER_MODEL = "Quiz.Result"
-AUTH_USER_MODEL = "Quiz.add_question"
-AUTH_USER_MODEL = "Quiz.check_answers"
-AUTH_USER_MODEL = "Quiz.Courses"
+#AUTH_USER_MODEL = "Quiz.Result"
+#AUTH_USER_MODEL = "Quiz.add_question"
+#AUTH_USER_MODEL = "Quiz.check_answers"
+#AUTH_USER_MODEL = "Quiz.Courses"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -84,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'quizdb',
-        'USER': 'root',
+        'USER': 'root',project_quiz
         'PASSWORD': "333610Shrey%",
         'HOST': "127.0.0.1",
         'PORT': "3306",
