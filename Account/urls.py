@@ -1,6 +1,6 @@
+from . import views
 from django.contrib import admin
 from django.urls import path,include
-from django.views import *
 
 urlpatterns = [
     path("login_as_student/",views.login_as_student,name="student_login"),
