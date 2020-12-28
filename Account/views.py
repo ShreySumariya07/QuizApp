@@ -1,29 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
+
+def index(request):
+    return render(request,'index.html')
 
 
 # Create your views here.
 def login_as_student(request):
-    user = authenticate(username='entered_email', password='entered_password')
+    user = authenticate(username='Email', password='Password')
     if user is not None:
-        return HttpResponse("Welcome")
+        return render(request, 'homepage.html')
     else:
-        return HttpResponse("Try again")
+        return redirect('index')
 
 
 def login_as_teacher(request):
-    user = authenticate(username='entered_email', password = 'entered_password')
+    user = authenticate(username='Email', password='Password')
     if user is not None:
-        return HttpResponse("Welcome")
+        return render(request, 'homepage.html')
     else:
-        return HttpResponse("Try again")
+        return redirect('index')
 
 
 def register_as_student(request):
-    return HttpResponse("Hello")
+    return render(request,'index.html')
 
 
 def register_as_teacher(request):
-    return HttpResponse("Hello")
+    return render(request,'index.html')
 

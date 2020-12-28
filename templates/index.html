@@ -1,11 +1,11 @@
 {% load static %}
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Login & Registration Form Transition</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{% static style.css %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,10 +25,10 @@
 
       <div class="social-media">
         <ul>
-          <li><img src="{% static images/facebook.png %}"></li>
-          <li><img src="{% static images/twitter.png %}"></li>
-          <li><img src="{% static images/linkedin.png %}"></li>
-          <li><img src="{% static images/instagram.png %}"></li>
+          <li><img src="{% static 'images/facebook.png' %}"></li>
+          <li><img src="{% static 'images/twitter.png' %}"></li>
+          <li><img src="{% static 'images/linkedin.png' %}"></li>
+          <li><img src="{% static 'images/instagram.png' %}"></li>
         </ul>
       </div>
     </div>
@@ -50,7 +50,7 @@
       </div>
       <div class="form sign-up">
         <h2>Sign Up</h2>
-        <label class="container" id="teacher"  onclick="toggle_visibility('teacher1');">Teacher
+        <label class="container" id="teacher" onclick="toggle_visibility('teacher1');">Teacher
           <input type="radio" checked="checked" name="radio">
           <span class="checkmark"></span>
         </label>
@@ -94,7 +94,7 @@
       </div>
     </div>
   </div>
-<script type="text/javascript" src="{% static script.js %}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script src="{% static 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js' %}"></script>
 </body>
 </html>
