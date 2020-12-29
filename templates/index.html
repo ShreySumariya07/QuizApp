@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  <script src = "{% static 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' %}"></script>
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -50,11 +51,11 @@
       </div>
       <div class="form sign-up">
         <h2>Sign Up</h2>
-        <label class="container" id="teacher" onclick="toggle_visibility('teacher1');">Teacher
+        <label class="container" id="teacher">Teacher
           <input type="radio" checked="checked" name="radio">
           <span class="checkmark"></span>
         </label>
-        <label class="container" id="student" onclick="toggle_visibility('student1');" >Student
+        <label class="container" id="student" >Student
           <input type="radio" name="radio">
           <span class="checkmark"></span>
         </label>
@@ -78,7 +79,7 @@
           <span>Phone Number</span>
           <input type="number">
         </label>
-        <label id="teacher1" style="display: none;" >
+        <label id="teacher1" >
           <span>Date of Birth</span>
           <input type="date">
         </label>
@@ -94,7 +95,6 @@
       </div>
     </div>
   </div>
-<script type="text/javascript" src="script.js"></script>
-<script src="{% static 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'script.js' %}"></script>
 </body>
 </html>

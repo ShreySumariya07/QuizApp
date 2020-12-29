@@ -10,12 +10,10 @@ function myfunction() {
 }
 
 function myalertsignup() {
-    //alert("login_as_student");
 	alert("Sign Up Successful");
 }
 
 function myalertlogin() {
-    //alert("views.login_as_student");
 	alert("Login Successful");
 }
 
@@ -40,7 +38,7 @@ document.getElementById("teacher").onclick = function() {
 
 } 
  
-*/
+
 
 function toggle_visibility(teacher1) {
 	var e = document.getElementById(teacher1);
@@ -60,3 +58,23 @@ function toggle_visibility(student1) {
 	else
 	   e.style.display = 'block';
 }
+*/
+
+
+ $(document).ready(function(){
+	$("#teacher").click(function(){
+	  $("#teacher1").hide();
+	});
+	$("#teacher").click(function(){
+	  $("#student1").show();
+	});
+  });
+
+  $(document).ready(function(){
+	$("#student").click(function(){
+	  $("#student1").hide();
+	});
+	$("#student").click(function(){
+	  $("#teacher1").show();
+	});
+  });

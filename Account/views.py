@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
 
-def index(request):
+def login(request):
     return render(request,'index.html')
-
+'''
 
 # Create your views here.
 def login_as_student(request):
@@ -30,3 +30,4 @@ def register_as_student(request):
 def register_as_teacher(request):
     return render(request,'index.html')
 
+'''

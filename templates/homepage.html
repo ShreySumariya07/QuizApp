@@ -4,8 +4,8 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>QUIZ</title>
-	<link rel="stylesheet" type="text/css" href="{% static style_2.css %}">
-	<script type="text/javascript" src="{% static index.js %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'style_2.css' %}">
+	<script type="text/javascript" src="{% static 'index.js' %}"></script>
 </head>
 <body>
 	<div id="header">
@@ -15,14 +15,13 @@
 		<ul>
 			<li><a href="#main">Home</a></li>
 			<li><a href="#main">About Us</a></li>
-			<li><a href="">
-				<label for="Login">Login</label>
+			<li><a href="Account/login">Login</a></li>
+
+				<!--<label for="Login">Login</label>
 				<select name="Login" id="Login">
 					<option value="Teacher">Teacher</option>
 					<option value="Student">Student</option>
-				</select>
-			</a>
-			</li>
+				</select>-->
 			<li><a href="#footer">Contact Us</a></li>
 		</ul>
 	</nav>
