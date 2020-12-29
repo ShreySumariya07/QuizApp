@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trial</title>
+</head>
+<body>
+    <form action="register" method="POST">
+        {% csrf_token %}
+            <label>Teacher</label>
+            <input type="radio" checked="checked" name="radio" value="teacher">
+            <label>Student</label>
+              <input type="radio" name="radio" value="student">
+            <label>First_Name</label>
+            <input type="text" name="fname">
+            <label>Last_Name</label>
+            <input type="text" name="lname">
+            <label>Email</label>
+              <input type="email" name="email">
+            <label>Password</label>
+            <input type="password" name="pass1">
+            <label>Confirm Password</label>
+            <input type="password" name="pass2">
+            <label>Phone Number</label>
+            <input type="number" name="phone">
+            <button type="button"  class="submit">Sign Up Now</button>
+          </div>
+      </form>
+</body>
+</html>
