@@ -1,4 +1,3 @@
-
 from datetime import *
 from django.contrib.auth.models import *
 from Account.models import *
@@ -7,11 +6,10 @@ from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 # from django.contrib.auth import login, authenticate
-
+from django.db import connection
 
 def login(request):
     return render(request, 'index.html')
-
 
 def login_confirm(request):
     # if request.user.is_authenticated:
@@ -23,14 +21,27 @@ def login_confirm(request):
         password = request.POST.get('password')
         user = auth.authenticate(username=email, password=password)
         if user is not None:
-            # auth.login(request, user)
-            return render(request,'index1.html')
+            value = User.objects.raw("select is_teacher,id from account_user where email = %s",[email])
+            for i in value:
+                print(i)
+            if value == 0:
+                return render(request,"teacher_navbar_dashboard.html")
+            else:
+                return render(request,"student_navbar_dashboard.html")
+
+        #auth.login(request, user)
+        # return render(request,'index1.html')
         else:
             messages.info(request, 'Invalid Credentials !')
             return redirect('login')
     else:
          return render(request, 'index.html')
 
+def custom_value(self,username):
+    with connection.cursor() as cursor:
+        cursor.execute("select is_teacher from account_user where email = %s",[self.username])
+        row = cursor.fetchone()
+    return row
 
 
 def register_confirm(request):
