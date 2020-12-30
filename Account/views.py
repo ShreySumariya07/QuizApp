@@ -1,11 +1,12 @@
-import datetime
+
+from datetime import *
 from django.contrib.auth.models import *
 from Account.models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+# from django.contrib.auth import login, authenticate
 
 
 def login(request):
@@ -13,11 +14,23 @@ def login(request):
 
 
 def login_confirm(request):
-    user = authenticate(username='Email', password='Password')
-    if user is not None:
-        return render(request, 'index1.html')
+    # if request.user.is_authenticated:
+    #     return redirect('index1.html')
+    # elif request.method == 'GET':
+    #     return render(request, 'index.html')
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = auth.authenticate(username=email, password=password)
+        if user is not None:
+            # auth.login(request, user)
+            return render(request,'index1.html')
+        else:
+            messages.info(request, 'Invalid Credentials !')
+            return redirect('login')
     else:
-        return render(request, "index.html")
+         return render(request, 'index.html')
+
 
 
 def register_confirm(request):
@@ -32,18 +45,21 @@ def register_confirm(request):
         print(first_name,teacher_student)
         if teacher_student == "student":
             b_day = request.POST.get("b_day")
+            # x = datetime.strptime(b_day,'%d%m%Y')
+            # x = x.date()
             grade = request.POST.get("grade")
-            age = int((datetime.datetime.now() - b_day).days / 365.25)
+            # today = date.today()
+            # age = today.year - x.year-((today.month,today.day)<(x.month,x.day))
             if pass1 == pass2:
                 if User.objects.filter(email=email).exists():
                     messages.info(request, "Email Taken")
                     return render(request, "index.html")
                 else:
-                    user = User.objects.create(first_name = first_name,last_name=last_name,email=email,password=pass1,is_student=True,phone_no=phone_no)
-                    student1 = Student.objects.create(user = user,b_day = b_day,age=age,grade = grade)
+                    user = User.objects.create_user(username=email,first_name = first_name,last_name=last_name,email=email,password=pass1,is_student=True,phone_no=phone_no)
+                    student1 = Student.objects.create(user = user,b_day = b_day,age = b_day,grade=grade)
                     user.save()
                     student1.save()
-                    return redirect("Account/login")
+                    return redirect("login")
             else:
                 messages.info(request, "Password didn't match")
                 return render(request, "index.html")
@@ -56,9 +72,9 @@ def register_confirm(request):
                     messages.info(request,"Email Taken")
                     return render(request, "index.html")
                 else:
-                    user = User.objects.create_user(first_name = first_name,last_name=last_name,email=email,password=pass1,is_teacher=True,phone_no=phone_no)
+                    user = User.objects.create_user(username=email,first_name = first_name,last_name=last_name,email=email,password=pass1,is_teacher=True,phone_no=phone_no)
+                    teacher1 = Teacher.objects.create(user = user,subject = subject,qualification =qualification)
                     user.save()
-                    teacher1 = Teacher.objects.create_user(user = user,subject = subject,qualification =qualification)
                     teacher1.save()
                     return redirect("login")
             else:

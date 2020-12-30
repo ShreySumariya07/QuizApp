@@ -15,7 +15,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     b_day = models.DateField(null=False, blank=False)
     grade = models.IntegerField(null = False)
-    age = models.IntegerField(null=False)
+    age = models.DateField(null=False)
     # def age(self):
     #     import datetime
     #     return int((datetime.datetime.now() - self.b_day).days / 365.25  )
