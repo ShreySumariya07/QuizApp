@@ -16,10 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 AUTH_USER_MODEL = "Account.User"
-#AUTH_USER_MODEL = "Quiz.Result"
-#AUTH_USER_MODEL = "Quiz.add_question"
-#AUTH_USER_MODEL = "Quiz.check_answers"
-#AUTH_USER_MODEL = "Quiz.Courses"
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -80,6 +77,8 @@ WSGI_APPLICATION = 'QuizApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
+# Shrey's mysql account
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -91,21 +90,17 @@ DATABASES = {
     }
 }
 
-'''
-DATABASES = {
-    'default': {
-        'NAME': 'quizdb',
-        'ENGINE': 'sqlserver_ado',
-        'HOST': 'dbserver\\ss2014',
-        'USER': '',
-        'PASSWORD': '',
-    }
-}
 
+'''
+#Shruti's mysql account 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'quizdb',
+        'USER': 'root',
+        'PASSWORD': "sgs@MySql",
+        'HOST': "127.0.0.1",
+        'PORT': "3306",
     }
 }
 '''

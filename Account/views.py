@@ -4,44 +4,29 @@ from Account.models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-# from django.contrib.auth import login, authenticate
-from django.db import connection
+
 
 def login(request):
     return render(request, 'index.html')
 
+
 def login_confirm(request):
-    # if request.user.is_authenticated:
-    #     return redirect('index1.html')
-    # elif request.method == 'GET':
-    #     return render(request, 'index.html')
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = auth.authenticate(username=email, password=password)
         if user is not None:
-            value = User.objects.raw("select is_teacher,id from account_user where email = %s",[email])
-            for i in value:
-                print(i)
-            if value == 0:
-                return render(request,"teacher_navbar_dashboard.html")
-            else:
-                return render(request,"student_navbar_dashboard.html")
-
-        #auth.login(request, user)
-        # return render(request,'index1.html')
+            if user.is_teacher == 1:
+                auth.login(request, user)
+                return render(request, "teacher_navbar_dashboard.html")
+            elif user.is_student == 1:
+                auth.login(request, user)
+                return render(request, "student_navbar_dashboard.html")
         else:
             messages.info(request, 'Invalid Credentials !')
             return redirect('login')
     else:
-         return render(request, 'index.html')
-
-def custom_value(self,username):
-    with connection.cursor() as cursor:
-        cursor.execute("select is_teacher from account_user where email = %s",[self.username])
-        row = cursor.fetchone()
-    return row
+        return render(request, 'index.html')
 
 
 def register_confirm(request):
@@ -56,18 +41,17 @@ def register_confirm(request):
         print(first_name,teacher_student)
         if teacher_student == "student":
             b_day = request.POST.get("b_day")
-            # x = datetime.strptime(b_day,'%d%m%Y')
-            # x = x.date()
+            x = datetime.strptime(b_day, '%Y-%m-%d').date()
             grade = request.POST.get("grade")
-            # today = date.today()
-            # age = today.year - x.year-((today.month,today.day)<(x.month,x.day))
+            today = date.today()
+            age = today.year - x.year-((today.month, today.day) < (x.month, x.day))
             if pass1 == pass2:
                 if User.objects.filter(email=email).exists():
                     messages.info(request, "Email Taken")
                     return render(request, "index.html")
                 else:
                     user = User.objects.create_user(username=email,first_name = first_name,last_name=last_name,email=email,password=pass1,is_student=True,phone_no=phone_no)
-                    student1 = Student.objects.create(user = user,b_day = b_day,age = b_day,grade=grade)
+                    student1 = Student.objects.create(user = user,b_day = b_day,age = age,grade=grade)
                     user.save()
                     student1.save()
                     return redirect("login")
@@ -80,7 +64,7 @@ def register_confirm(request):
             qualification = request.POST.get("grade")
             if pass1 == pass2:
                 if User.objects.filter(email=email).exists():
-                    messages.info(request,"Email Taken")
+                    messages.info(request, "Email Taken")
                     return render(request, "index.html")
                 else:
                     user = User.objects.create_user(username=email,first_name = first_name,last_name=last_name,email=email,password=pass1,is_teacher=True,phone_no=phone_no)
