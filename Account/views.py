@@ -38,7 +38,6 @@ def register_confirm(request):
         email = request.POST.get("email")
         phone_no = request.POST.get("phone")
         teacher_student = request.POST.get("radio")
-        print(first_name,teacher_student)
         if teacher_student == "student":
             b_day = request.POST.get("b_day")
             x = datetime.strptime(b_day, '%Y-%m-%d').date()
@@ -50,8 +49,8 @@ def register_confirm(request):
                     messages.info(request, "Email Taken")
                     return render(request, "index.html")
                 else:
-                    user = User.objects.create_user(username=email,first_name = first_name,last_name=last_name,email=email,password=pass1,is_student=True,phone_no=phone_no)
-                    student1 = Student.objects.create(user = user,b_day = b_day,age = age,grade=grade)
+                    user = User.objects.create_user(username=email, first_name=first_name, last_name=last_name, email=email, password=pass1, is_student=True, phone_no=phone_no)
+                    student1 = Student.objects.create(user=user, b_day=b_day, age=age, grade=grade)
                     user.save()
                     student1.save()
                     return redirect("login")

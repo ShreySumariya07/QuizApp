@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/quiz_info.css' %}">
+	<script type="text/javascript" src="{% static 'js/quiz_info.js' %}"></script>
+</head>
+<body>
+	{% csrf_token %}
+	<nav id="navbar">
+		<ul>
+			<li><a href="">Courses</a></li>
+			<li><a href="">Topic</a></li>
+			<li><a href="#footer">Quizzes</a></li>
+			<li><a href="">Logout</a></li>
+		</ul>
+	</nav>
+	<div class="main">
+		<div class="form">
+			<form id="theForm" method="post" onSubmit="return validateTextbox();" action="submit_details" >
+
+				<div class="row">
+				<label for="name">Quiz Name:</label>
+				<input type="text" id="name" name=""> </br> </br>
+				</div>
+				<div class="row">
+				<label for="topic">Topic:</label>
+				<input type="text" id="topic" topic=""> </br> </br>
+				</div>
+				<div class="row">
+				<label for="no_of_ques">Number of Questions:</label>
+				<input type="number" id="no_of_ques" no_of_ques=""> </br> </br>
+				</div>
+				<div class="row">
+				<label for="marks_per_ques">Marks per Question:</label>
+				<input type="number" id="marks_per_ques" marks_per_ques=""> </br> </br>
+				</div>
+				<div class="row">
+				<label for="total_marks">Total Marks:</label>
+				<input type="number" id="total_marks" total_marks=""> </br> </br>
+				</div>
+                <div class="row">
+				<label for="author">Author:</label>
+				<input type="text" id="author" author=""> </br> </br>
+				</div>
+				<br>
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

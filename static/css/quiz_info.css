@@ -1,0 +1,75 @@
+body{
+	background: linear-gradient(-45deg,#e73c7e,#b224ef, #23a6d5, #7579ff);
+	background-size: 400% 400%;
+    animation: gradient 4s ease infinite;
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+#navbar{
+	mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+}
+#navbar ul{
+	/*background: linear-gradient(-45deg,#e73c7e,#b224ef, #23a6d5, #7579ff);*/
+	box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), 0 0 1px rgba(255, 255, 255, 0.6);
+	margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    list-style-type: none;
+    padding: 5px;
+}
+#navbar ul li{
+	display: inline;
+}
+#navbar ul li a{
+	text-decoration: none;
+	font-family: Arial;
+	padding: 0.2em 1em;
+	color: #fff;
+	/*background-color: #000;*/
+	font-size: 20px;
+	margin-top: 10px;
+}
+#navbar ul li a:hover{
+	color: black;
+	background-color: lightgrey;
+}
+
+.row {
+display: table-row;
+border-radius:15px;
+a
+}
+ 
+.row label {
+display: table-cell;
+padding: 2px;
+text-align:right;
+ 
+}
+ 
+.row input {
+display: table-cell;
+padding: 2px;
+}
+.form{
+	margin-top: 200px;
+	margin-left: 550px;
+}
+#theForm {
+color:white;
+display: table;
+padding: 10px;
+	background:linear-gradient(to top left,grey,lightgrey,grey,lightgrey,grey);
+border: solid 2px black;
+align-items:center;
+border-radius: 5px;
+}

@@ -1,0 +1,171 @@
+*, *:before, *:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg,#e73c7e,#b224ef, #23a6d5, #7579ff);
+    background-size: 400% 400%;
+    animation: gradient 4s ease infinite;
+    font-family: 'Nunito', sans-serif;
+  }
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+
+  .cont{
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 600px;
+    background: #fff;
+  }
+
+  
+  .question {
+      padding: 3rem;
+      display: block;
+      justify-content: center;
+      text-align: center;
+  }
+
+.quest {
+    position: relative;
+    padding-top: 2rem;
+    width: 640px;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 1rem;
+    outline: none;
+  }
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 6rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container .inp {
+  position: absolute;
+  padding-left: 10rem;
+  opacity: 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(109, 93, 93, 0.4);
+}
+.container .opt{
+    margin-left: 3rem;
+    position: relative;
+    
+    padding: 0.5rem;
+    width: 440px;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px solid rgba(109, 93, 93, 0.4);
+    outline: none;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  margin-top: 7.5px;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover .inp ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container .inp:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container .inp:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+button{
+    display: block;
+    margin: 0 auto;
+    width: 70px;
+    height: 34px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .add{
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+    outline: none;
+  }
+  
+  .add:hover{
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff);
+  }
+
+  .added{
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+    outline: none;
+  }
+
+  .add:hover{
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff);
+  }
