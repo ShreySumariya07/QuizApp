@@ -29,27 +29,39 @@ def submit_quiz_details(request):
         total_marks = int(questions) * int(marks)
         teacher_id = User.objects.only("id").get(email=tname)
         update_on = date.today()
-        topic_id = Topic.objects.only("Topic_id").get(Topic_name = topic_name)
-        new_quiz = Quiz_Details.objects.create(quiz_name=quiz_name, quiz_topic=topic_id, no_of_questions=questions,
-                                               Mark_per_question=marks, total_marks=total_marks, teacher_id=teacher_id,
-                                               update_on=update_on)
-        new_quiz.save()
-        return render(request, 'display_index.html')
-        '''if Topic.objects.filter(Topic_name=topic_name).exists():
-            topic_id = Topic.objects.filter(Topic_name=topic_name).values("Topic_id")
-            new_quiz = Quiz_Details.objects.create(quiz_name=quiz_name, quiz_topic=topic_id, no_of_questions=questions, Mark_per_question=marks, total_marks=total_marks, teacher_id=teacher_id, update_on=update_on )
+        # topic_id = Topic.objects.only("Topic_id").get(Topic_name = topic_name)
+        if Topic.objects.filter(Topic_name=topic_name).exists():
+            topic_id = Topic.objects.only("Topic_id").get(Topic_name=topic_name)
+            new_quiz = Quiz_Details.objects.create(quiz_name=quiz_name, quiz_topic=topic_id, no_of_questions=questions,
+                                                   Mark_per_question=marks, total_marks=total_marks,
+                                                   teacher_id=teacher_id,
+                                                   update_on=update_on)
             new_quiz.save()
-            return render(request, 'display_index.html')
+            quiz = Quiz_Details.objects.filter(teacher_id = teacher_id)
+            user_quiz = {
+                "quizes":quiz
+            }
+            return render(request,"display_index.html",user_quiz)
         else:
             messages.info(request, "Invalid Topic")
-            return redirect('quiz_details')'''
+            return redirect('quiz_details')
     else:
         messages.info(request, "Invalid Input method")
         return redirect('quiz_details')
-
-
+"""
+def display_quiz(request):
+    if request.session.has_key("tid"):
+        ses = request.session["tid"]
+        quiz = Quiz_Details.objects.filter(teacher_id = ses)
+        user_quiz = {
+            "quizes":quiz
+        }
+        return render(request,"display_index.html",user_quiz)
+    # else:
+    #     return render(request,"teacher_navbar_dashboard.html")
+"""
 def to_add_question(request):
-    return HttpResponse("Quiz Hello")
+    return render(request,"addQ.html")
 
 
 def check_my_answer(request):
