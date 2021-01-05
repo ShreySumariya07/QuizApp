@@ -23,9 +23,8 @@
                             No of questions : {{quiz.no_of_questions}}<br />
                             Total Marks: {{quiz.total_marks}}<br />
                         </p>
-                        <button class="submit" style="float: right;" ><a href="{% url 'Quiz:to_add_question' %}"> Add +</a></button>
+                        <button class="submit" style="float: right;" ><a href="{% url 'Quiz:to_add_question' no_of_Q=quiz.no_of_questions %}"> Add +</a></button>
                     </div>
-
                 </div>
                 {% endfor %}
             </div>

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/addQstyle.css' %}">
+</head>
+<body>
+
+    <div class="cont" >
+        <form id="myForm">
+            <section>
+                <div class="question" >  
+                    <textarea class="quest" type="text" placeholder="Enter Question"></textarea>
+                </div>
+            </section>
+            <section>
+                <label class="container">
+                    <input class="inp" type="radio" name="radio">
+                    <span class="checkmark"></span>
+                    <input class="opt" type="text" placeholder="Enter Option 1">
+                </label>
+                <label class="container">
+                    <input class="inp" type="radio" name="radio">
+                    <span class="checkmark"></span>
+                    <input class="opt" type="text" placeholder="Enter Option 2">
+                </label>
+                <label class="container">
+                    <input class="inp" type="radio" name="radio">
+                    <span class="checkmark"></span>
+                    <input class="opt" type="text" placeholder="Enter Option 3">
+                </label>
+                <label class="container">
+                    <input class="inp" type="radio" name="radio">
+                    <span class="checkmark"></span>
+                    <input class="opt" type="text" placeholder="Enter Option 4">
+                </label>
+            </section>
+            <div class="btns" style="display: flex;">
+                <button class="add" onclick="resetFunction()" value="Reset form" >Reset</button>
+                <button class="added" >Add +</button>
+                <button class="added" >Finish</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
