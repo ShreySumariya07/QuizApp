@@ -11,17 +11,24 @@
     
     <section id="services" class="services">
         <div class="container">
-            <h1 class="section-heading"><span></span>title</h1>
+            <h1 class="section-heading"><span></span>Apratim Quiz</h1>
             <p>                </p>
             <div class="container-1">
-            <div class="card-wrapper">
-                <div class="card" style="padding-top: -5rem;">
-                    <h2></h2>
-                    <p> ukatukAWgrkuwtr. kuwgfk.euvuvybuvgr aeiqUTR AkUFVA/ILAYTWEVIVY AU;AOY7BOWBTV\SE ILTHY/LRBWTBYE ILTE</p>
-                    <button class="submit" style="float: right;" >Add +</button>
+                {% for quiz in quizes %}
+                <div class="card-wrapper">
+
+                    <div class="card" style="padding-top: -5rem;">
+                        <h2 style="text-align:center">{{quiz.quiz_name}}</h2>
+                        <p style="float left">Quiz_Topic: {{quiz.quiz_topic}}<br />
+                            No of questions : {{quiz.no_of_questions}}<br />
+                            Total Marks: {{quiz.total_marks}}<br />
+                        </p>
+                        <button class="submit" style="float: right;" ><a href="{% url 'Quiz:to_add_question' %}"> Add +</a></button>
+                    </div>
+
                 </div>
+                {% endfor %}
             </div>
-            
         </div>
     </section>
 </body>
