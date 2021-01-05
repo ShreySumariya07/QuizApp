@@ -1,5 +1,5 @@
 from django.db import models
-from Account.models import Teacher,Student
+from Account.models import Teacher,Student,User
 
 '''
 class Courses(models.Model):
@@ -31,7 +31,7 @@ class Quiz_Details(models.Model):
     no_of_questions = models.IntegerField(null=False)
     Mark_per_question = models.IntegerField(null=False)
     total_marks = models.IntegerField()
-    teacher_id = models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    teacher_id = models.ForeignKey(User,on_delete=models.CASCADE)
     update_on = models.DateField(auto_now=True)
 
 
