@@ -1,0 +1,114 @@
+*, *:before, *:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg,#e73c7e,#b224ef, #23a6d5, #7579ff);
+    background-size: 400% 400%;
+    animation: gradient 4s ease infinite;
+    font-family: 'Nunito', sans-serif;
+  }
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+
+  input, button{
+    border:none;
+    outline: none;
+    background: none;
+  }
+  
+  .cont{
+    overflow: hidden;
+    position: relative;
+    width: 700px;
+    height: 580px;
+    background: #fff;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  }
+  
+  .form{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30px 30px;
+    /*-webkit-transition:-webkit-transform 1.2s ease-in-out;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out;*/
+    transition: transform 1.2s ease-in-out;
+  }
+
+  h2{
+    width: 100%;
+    margin-bottom: 2rem;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  label{
+    display: block;
+    width: 260px;
+    margin: 12px auto 0;
+    margin-bottom: -1rem;
+    text-align: center;
+  }
+  
+  label span{
+    font-size: 15px;
+    font-weight: 600;
+    color: #505f75;
+    text-transform: uppercase;
+  }
+  
+  input{
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    font-size: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(109, 93, 93, 0.4);
+    text-align: center;
+    font-family: 'Nunito', sans-serif; 
+  }
+  
+
+  
+  .submit{
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 34px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+  }
+  
+  .submit:hover{
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff);
+  }
+  
+  
+  
+ 

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/quiz_style.css' %}">
+    <script type="text/javascript" src="{% static 'js/quiz_info.js' %}"></script>
+</head>
+<body>
+    <div class="cont">
+        <form id="theForm" method="post" onSubmit="return validateTextbox(); ">
+            <div class="form sign-in">
+                <h2>Quiz Information</h2>
+                <label for="name"> 
+                    <span>Quiz Name:</span>
+                    <input type="text" id="name" name=""> </br> </br>
+                </label>
+                
+
+
+                <label for="topic">
+                    <span>Topic:</span>
+                    <input type="text" id="topic" topic=""> </br> </br>
+                </label>
+				
+				<label for="no_of_ques">
+                    <span>Number of Questions:</span>
+                    <input type="number" id="no_of_ques" no_of_ques=""> </br> </br>
+                </label>
+				
+				
+				<label for="marks_per_ques">
+                    <span>Marks per Question:</span>
+                    <input type="number" id="marks_per_ques" marks_per_ques=""> </br> </br>
+                </label>
+				
+				
+				<label for="author">
+                    <span>Email:</span>
+                    <input type="email" id="author" author=""> </br> </br>
+                </label>
+				
+				
+				<br>
+				<input type="submit" class="submit" value="Submit">
+
+  
+            </div>
+        </form>
+    </div>
+</body>
+</html>
