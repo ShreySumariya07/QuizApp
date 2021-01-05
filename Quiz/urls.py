@@ -11,4 +11,5 @@ urlpatterns = [
     path("add_question/", views.to_add_question, name="to_add_question"),
     path("check_answers/", views.check_my_answer, name="check_my_answer"),
     path("result/", views.final_score, name="final_score"),
+    path("submit_quiz_details/",views.submit_quiz_details, name="submit_quiz_details"),
 ]

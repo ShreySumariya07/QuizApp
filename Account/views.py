@@ -67,7 +67,7 @@ def register_confirm(request):
                     return render(request, "index.html")
                 else:
                     user = User.objects.create_user(username=email,first_name = first_name,last_name=last_name,email=email,password=pass1,is_teacher=True,phone_no=phone_no)
-                    teacher1 = Teacher.objects.create(user = user,subject = subject,qualification =qualification)
+                    teacher1 = Teacher.objects.create(user=user, subject = subject,qualification =qualification)
                     user.save()
                     teacher1.save()
                     return redirect("login")
