@@ -59,8 +59,13 @@ def display_quiz(request):
 """
 
 
-def to_add_question(request, no_of_Q):
+def to_add_question(request, qu_id):
+    q_obj = Quiz_Details.objects.only("no_of_questions").get(quiz_id=qu_id)
+    q_no = q_obj.no_of_questions
     return render(request, "add_question.html")
+
+def save_question(request):
+
 
 
 def check_my_answer(request):
