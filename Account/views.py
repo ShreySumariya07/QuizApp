@@ -18,7 +18,8 @@ def login_confirm(request):
         if user is not None:
             if user.is_teacher == 1:
                 auth.login(request, user)
-                return render(request, "teacher_navbar_dashboard.html")
+                tid = User.objects.only("id").get(email=email)
+                return render(request, "teacher_navbar_dashboard.html", {"tea_id": tid.id})
             elif user.is_student == 1:
                 auth.login(request, user)
                 return render(request, "student_navbar_dashboard.html")
@@ -66,8 +67,8 @@ def register_confirm(request):
                     messages.info(request, "Email Taken")
                     return render(request, "index.html")
                 else:
-                    user = User.objects.create_user(username=email,first_name = first_name,last_name=last_name,email=email,password=pass1,is_teacher=True,phone_no=phone_no)
-                    teacher1 = Teacher.objects.create(user=user, subject = subject,qualification =qualification)
+                    user = User.objects.create_user(username=email, first_name=first_name, last_name=last_name, email=email, password=pass1, is_teacher=True, phone_no=phone_no)
+                    teacher1 = Teacher.objects.create(user=user, subject=subject, qualification=qualification)
                     user.save()
                     teacher1.save()
                     return redirect("login")
@@ -89,7 +90,7 @@ def regsiter(request):
         pass2 = request.POST.get("pass2")
         phone = request.POST.get("phone")
         print(first_name)
-        user = User.objects.create_user(email=email,last_name=last_name,first_name=first_name,password=pass1,phone_no=phone,is_student=True)
+        user = User.objects.create_user(email=email,last_name=last_name,first_name=first_name,password=pass1,phone_no=phone, is_student=True)
         user.save()
         return render(request,"homepage.html")
     else:
