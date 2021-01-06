@@ -4,6 +4,7 @@ from datetime import date
 from Quiz.models import *
 from Account.models import *
 from django.contrib import messages
+
 # Create your views here.
 
 
@@ -62,9 +63,52 @@ def display_quiz(request):
 def to_add_question(request, qu_id):
     q_obj = Quiz_Details.objects.only("no_of_questions").get(quiz_id=qu_id)
     q_no = q_obj.no_of_questions
+    # global value_quiz_id
+    # global value_q_no
+    # def value_quiz_id():
+    #     return qu_id
+    # def value_q_no():
+    #     return q_no
+
+    request.session['quiz_id12'] = qu_id
+    request.session['ques_no'] = q_no
     return render(request, "add_question.html")
 
+count = 1
+
 def save_question(request):
+    global count
+    qu_no = None
+    quiz_id12 = None
+    if "quiz_id12" in request.session:
+        quiz_id12 = request.session["quiz_id12"]
+        print(quiz_id12)
+    quiz_id1 = Quiz_Details.objects.only("quiz_id").get(quiz_id = quiz_id12)
+    print(quiz_id1)
+    # quiz_id = quiz_id1.quiz_id
+    # print(quiz_id)
+    if "ques_no" in request.session:
+        qu_no = request.session["ques_no"]
+        print(qu_no)
+
+
+    if request.method == "POST":
+        question = request.POST.get("question")
+        Choice_1 = request.POST.get("choice_1")
+        Choice_2 = request.POST.get("choice_2")
+        Choice_3 = request.POST.get("choice_3")
+        Choice_4 = request.POST.get("choice_4")
+        answer = request.POST.get("answer")
+        quiz = add_question.objects.create(quiz_id1= quiz_id1,question = question, Choice_1 = Choice_1,Choice_2 = Choice_2, Choice_3 = Choice_3, Choice_4 = Choice_4,answer = answer)
+        quiz.save()
+        if count <= qu_no:
+            count = count + 1
+            return render(request,"add_question.html")
+        else:
+            return HttpResponse("done")
+    else:
+        messages.info(request,"invalid method")
+        return render(request,"teacher_navbar_dashboard.html")
 
 
 

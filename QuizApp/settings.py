@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
 ROOT_URLCONF = 'QuizApp.urls'
 
 TEMPLATES = [
@@ -77,7 +79,7 @@ WSGI_APPLICATION = 'QuizApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-'''
+
 # Shrey's mysql account
 DATABASES = {
     'default': {
@@ -89,8 +91,8 @@ DATABASES = {
         'PORT': "3306",
     }
 }
-'''
 
+'''
 #Shruti's mysql account 
 DATABASES = {
     'default': {
@@ -102,7 +104,7 @@ DATABASES = {
         'PORT': "3306",
     }
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
