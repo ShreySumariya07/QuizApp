@@ -5,8 +5,6 @@ from Quiz.models import *
 from Account.models import *
 from django.contrib import messages
 
-# Create your views here.
-
 
 def course_details(request):
     return HttpResponse("Quiz Hello")
@@ -30,7 +28,7 @@ def submit_quiz_details(request):
         total_marks = int(questions) * int(marks)
         teacher_id = User.objects.only("id").get(email=tname)
         update_on = date.today()
-        # topic_id = Topic.objects.only("Topic_id").get(Topic_name = topic_name)
+        topic_id = Topic.objects.only("Topic_id").get(Topic_name = topic_name)
         if Topic.objects.filter(Topic_name=topic_name).exists():
             topic_id = Topic.objects.only("Topic_id").get(Topic_name=topic_name)
             new_quiz = Quiz_Details.objects.create(quiz_name=quiz_name, quiz_topic=topic_id, no_of_questions=questions,
@@ -46,6 +44,81 @@ def submit_quiz_details(request):
     else:
         messages.info(request, "Invalid Input method")
         return redirect('quiz_details')
+
+
+def quiz_added(request, teacher_id):
+    quiz = Quiz_Details.objects.filter(teacher_id=teacher_id)
+    return render(request, 'display_index.html', user_quiz)
+
+
+def to_add_question(request, qu_id):
+    q_obj = Quiz_Details.objects.only("no_of_questions").get(quiz_id=qu_id)
+    q_no = q_obj.no_of_questions
+    request.session['quiz_id12'] = qu_id
+    request.session['ques_no'] = q_no
+    count = Quiz_Details.objects.only("questions_entered").get(quiz_id=qu_id)
+    if count.questions_entered <= q_no:
+        return render(request, "add_question.html")
+    else:
+        return HttpResponse("All questions already entered")
+
+
+def save_question(request):
+    qu_no = None
+    quiz_id12 = None
+
+    if "quiz_id12" in request.session:
+        quiz_id12 = request.session["quiz_id12"]
+
+    quiz_id1 = Quiz_Details.objects.only("quiz_id").get(quiz_id=quiz_id12)
+
+    if "ques_no" in request.session:
+        qu_no = request.session["ques_no"]
+
+    count = Quiz_Details.objects.only("questions_entered").get(quiz_id=quiz_id12)
+
+    if count.questions_entered <= qu_no:
+        count.questions_entered += 1
+        count.save(update_fields=['questions_entered'])
+        if request.method == "POST":
+            question = request.POST.get("question")
+            Choice_1 = request.POST.get("choice_1")
+            Choice_2 = request.POST.get("choice_2")
+            Choice_3 = request.POST.get("choice_3")
+            Choice_4 = request.POST.get("choice_4")
+            answer = request.POST.get("answer")
+            quiz = add_question.objects.create(quiz_id1=quiz_id1, question=question, Choice_1=Choice_1, Choice_2=Choice_2, Choice_3=Choice_3, Choice_4=Choice_4, answer=answer)
+            quiz.save()
+            print("Total questions : ", qu_no)
+            print("Entered questions : ", count.questions_entered)
+            return render(request, "add_question.html")
+        else:
+            messages.info(request, "invalid method")
+            return render(request, "teacher_navbar_dashboard.html")
+    else:
+        return HttpResponse("done")
+
+
+def check_my_answer(request):
+    return HttpResponse("Quiz Hello")
+
+
+def final_score(request):
+    return HttpResponse("Quiz Hello")
+
+
+def student_quiz(request):
+    return render(request, "play_quiz.html")
+
+
+def results_page(request):
+    return render(request, "result.html")
+
+
+def play_quiz(request):
+    return render(request, "plain.html")
+
+
 """
 def display_quiz(request):
     if request.session.has_key("tid"):
@@ -58,63 +131,3 @@ def display_quiz(request):
     # else:
     #     return render(request,"teacher_navbar_dashboard.html")
 """
-
-
-def to_add_question(request, qu_id):
-    q_obj = Quiz_Details.objects.only("no_of_questions").get(quiz_id=qu_id)
-    q_no = q_obj.no_of_questions
-    # global value_quiz_id
-    # global value_q_no
-    # def value_quiz_id():
-    #     return qu_id
-    # def value_q_no():
-    #     return q_no
-
-    request.session['quiz_id12'] = qu_id
-    request.session['ques_no'] = q_no
-    return render(request, "add_question.html")
-
-count = 1
-
-def save_question(request):
-    global count
-    qu_no = None
-    quiz_id12 = None
-    if "quiz_id12" in request.session:
-        quiz_id12 = request.session["quiz_id12"]
-        print(quiz_id12)
-    quiz_id1 = Quiz_Details.objects.only("quiz_id").get(quiz_id = quiz_id12)
-    print(quiz_id1)
-    # quiz_id = quiz_id1.quiz_id
-    # print(quiz_id)
-    if "ques_no" in request.session:
-        qu_no = request.session["ques_no"]
-        print(qu_no)
-
-
-    if request.method == "POST":
-        question = request.POST.get("question")
-        Choice_1 = request.POST.get("choice_1")
-        Choice_2 = request.POST.get("choice_2")
-        Choice_3 = request.POST.get("choice_3")
-        Choice_4 = request.POST.get("choice_4")
-        answer = request.POST.get("answer")
-        quiz = add_question.objects.create(quiz_id1= quiz_id1,question = question, Choice_1 = Choice_1,Choice_2 = Choice_2, Choice_3 = Choice_3, Choice_4 = Choice_4,answer = answer)
-        quiz.save()
-        if count <= qu_no:
-            count = count + 1
-            return render(request,"add_question.html")
-        else:
-            return HttpResponse("done")
-    else:
-        messages.info(request,"invalid method")
-        return render(request,"teacher_navbar_dashboard.html")
-
-
-
-def check_my_answer(request):
-    return HttpResponse("Quiz Hello")
-
-
-def final_score(request):
-    return HttpResponse("Quiz Hello")

@@ -47,14 +47,17 @@
 	
 	<div class="row">
 		<div class="leftcolumn">
-		  <div class="card">
+
+			<div class="card">
 			<h2>Online exam portal personalized for teachers</h2>
 			<h5>We enable teachers to create, share, evaluate smart online exams in less than 5 min, and give valuable feedback to students with their self-branded exam portal.</h5>
-			<div class="fakeimg" style="height:200px;">Image</div>
+
+			  <div class="fakeimg" style="height:200px;">Image</div>
 			<p>Some text..</p>
 			<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-		  </div>
-		  <div class="card">
+		  	</div>
+
+			<div class="card">
 			<h2>TITLE HEADING</h2>
 			<h5>Title description, Sep 2, 2017</h5>
 			<div class="fakeimg" style="height:200px;">Image</div>
@@ -62,7 +65,7 @@
 			<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 			<div id="btn">
 				<button class="btns" ><a href="{% url 'Quiz:quiz_details' %}">Add Quiz</a></button>
-				<button class="btns" ><a href="display_index.html">Quizzes</a></button>
+				<button class="btns" ><a href="{% url 'Quiz:quiz_added' teacher_id=tea_id %}">Quizzes</a></button>
 				<button class="btns">Student Template</button>
 			</div>
 		  </div>

@@ -1,0 +1,118 @@
+*, *:before, *:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  body{
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-90deg,#e73c7e,#b224ef, #23a6d5, #7579ff);
+    background-size: 400% 400%;
+    animation: gradient 4s ease infinite;
+    font-family: 'Nunito', sans-serif;
+  }
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+
+  button{
+    display: block;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+    width: 120px;
+    height: 34px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .submit{
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+  }
+  
+  .submit:hover{
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff);
+  }
+  
+
+  .section-heading{
+    color:rgb(12, 12, 12);
+    text-align: center;
+    font-size: 2rem;
+    line-height: 0.5;
+}
+.section-heading span{
+    color:rgb(0, 174, 255);
+}
+.section-heading +p{
+    color: grey;
+    font-family: 'Lato',sans-serif;
+    margin-bottom: 8rem;
+    text-align: center;
+}
+
+  .container-1{
+      margin: 1rem;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+}
+section.services .card-wrapper .card{
+    background: white;
+    padding: 5.5rem 0.8rem;
+    position: relative;
+    text-align: center;
+    transition: all .3s ease;
+}
+
+section.services .card-wrapper .card h2{
+    color: gray;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+section.services .card-wrapper .card p{
+    color: gray;
+    line-height: 1.6;
+}
+
+/* Responsive layout - when the screen is less than 540px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1025px) {
+	.container-1 {   
+        display: inline-block;
+        width: 100%;
+        padding-right: 4rem;
+        padding-bottom: 1rem;
+        margin-top: -5rem;
+	}
+  }
+
+  @media screen and (max-width: 1025px) {
+	.card-wrapper {   
+        display: inline-block;
+        width: 100%;
+        padding-bottom: 1rem;
+	}
+  }
