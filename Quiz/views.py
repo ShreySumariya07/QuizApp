@@ -48,6 +48,7 @@ def submit_quiz_details(request):
 
 def quiz_added(request, teacher_id):
     quiz = Quiz_Details.objects.filter(teacher_id=teacher_id)
+    user_quiz = {'quizes': quiz}
     return render(request, 'display_index.html', user_quiz)
 
 
