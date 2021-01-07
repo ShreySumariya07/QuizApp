@@ -31,7 +31,7 @@
   .cont{
     overflow: hidden;
     position: relative;
-    width: 900px;
+    width: 850px;
     height: 600px;
     background: #fff;
   }
@@ -80,7 +80,7 @@
     position: relative;
     
     padding: 0.5rem;
-    width: 440px;
+    width: 640px;
     text-align: center;
     font-size: 20px;
     border: none;
@@ -129,12 +129,14 @@
 	border-radius: 50%;
 	background: white;
 }
-
+.btns{
+    margin-top: -1rem;
+}
 button{
     display: block;
     margin: 0 auto;
-    width: 70px;
-    height: 34px;
+    width: 120px;
+    height: 40px;
     border-radius: 30px;
     color: #fff;
     font-size: 15px;

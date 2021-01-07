@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QUIZ</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/student_dash.css' %}">
+</head>
+<body>
+	<div id="header">
+		<h1>QUIZ PLANET</h1>
+	</div>
+	<nav id="navbar">
+		<ul>
+			<li><a href="{% url 'Quiz:student_quiz' %}">Quizzes</a></li>
+			<li><a href="{% url 'Quiz:results_page' %}">Result</a></li>
+			<li><a href="#footer">Logout</a></li>
+		</ul>
+	</nav>
+	<div class="sidebar">
+	
+	<div class="row">
+		<div class="leftcolumn">
+		  <div class="card">
+			<h2>Online exam portal personalized for teachers</h2>
+			<h5>We enable teachers to create, share, evaluate smart online exams in less than 5 min, and give valuable feedback to students with their self-branded exam portal.</h5>
+			<div class="fakeimg" style="height:200px;">Image</div>
+			<p>Some text..</p>
+			<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          </div>
+        </div>
+    </div>
+
+    <section id="services" class="services">
+        <div class="container">
+            
+            <p>                </p>
+            <div class="container-1">
+            <div class="card-wrapper">
+                <div class="card" style="padding-top: -5rem;">
+                    <h2></h2>
+                    <p> ukatukAWgrkuwtr. kuwgfk.euvuvybuvgr aeiqUTR AkUFVA/ILAYTWEVIVY AU;AOY7BOWBTV\SE ILTHY/LRBWTBYE ILTE</p>
+                    <button class="submit" style="float: right;" >Play</button>
+                </div>
+            </div>
+            <div class="card-wrapper">
+                <div class="card" style="padding-top: -5rem;">
+                    <h2></h2>
+                    <p> ukatukAWgrkuwtr. kuwgfk.euvuvybuvgr aeiqUTR AkUFVA/ILAYTWEVIVY AU;AOY7BOWBTV\SE ILTHY/LRBWTBYE ILTE</p>
+                    <button class="submit" style="float: right;" >Play</button>
+                </div>
+            </div>
+            <div class="card-wrapper">
+                <div class="card" style="padding-top: -5rem;">
+                    <h2></h2>
+                    <p> ukatukAWgrkuwtr. kuwgfk.euvuvybuvgr aeiqUTR AkUFVA/ILAYTWEVIVY AU;AOY7BOWBTV\SE ILTHY/LRBWTBYE ILTE</p>
+                    <button class="submit" style="float: right;" >Play</button>
+                </div>
+            </div>
+            
+        </div>
+        <div  class="more">
+            <a href="{% url 'Quiz:student_quiz' %}" >More</a>
+        </div>
+        
+    </section>
+</body>

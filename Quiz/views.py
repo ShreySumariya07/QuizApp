@@ -48,7 +48,6 @@ def submit_quiz_details(request):
 
 def quiz_added(request, teacher_id):
     quiz = Quiz_Details.objects.filter(teacher_id=teacher_id)
-    user_quiz = {"quizes": quiz}
     return render(request, 'display_index.html', user_quiz)
 
 
@@ -57,43 +56,47 @@ def to_add_question(request, qu_id):
     q_no = q_obj.no_of_questions
     request.session['quiz_id12'] = qu_id
     request.session['ques_no'] = q_no
-    return render(request, "add_question.html")
-
-
-count = 1
+    count = Quiz_Details.objects.only("questions_entered").get(quiz_id=qu_id)
+    if count.questions_entered <= q_no:
+        return render(request, "add_question.html")
+    else:
+        return HttpResponse("All questions already entered")
 
 
 def save_question(request):
-    global count
     qu_no = None
     quiz_id12 = None
 
     if "quiz_id12" in request.session:
         quiz_id12 = request.session["quiz_id12"]
-        print(quiz_id12)
-    quiz_id1 = Quiz_Details.objects.only("quiz_id").get(quiz_id = quiz_id12)
+
+    quiz_id1 = Quiz_Details.objects.only("quiz_id").get(quiz_id=quiz_id12)
 
     if "ques_no" in request.session:
         qu_no = request.session["ques_no"]
-        print(qu_no)
 
-    if request.method == "POST":
-        question = request.POST.get("question")
-        Choice_1 = request.POST.get("choice_1")
-        Choice_2 = request.POST.get("choice_2")
-        Choice_3 = request.POST.get("choice_3")
-        Choice_4 = request.POST.get("choice_4")
-        answer = request.POST.get("answer")
-        quiz = add_question.objects.create(quiz_id1=quiz_id1, question=question, Choice_1=Choice_1, Choice_2=Choice_2, Choice_3=Choice_3, Choice_4=Choice_4, answer=answer)
-        quiz.save()
-        if count <= qu_no:
-            count = count + 1
+    count = Quiz_Details.objects.only("questions_entered").get(quiz_id=quiz_id12)
+
+    if count.questions_entered <= qu_no:
+        count.questions_entered += 1
+        count.save(update_fields=['questions_entered'])
+        if request.method == "POST":
+            question = request.POST.get("question")
+            Choice_1 = request.POST.get("choice_1")
+            Choice_2 = request.POST.get("choice_2")
+            Choice_3 = request.POST.get("choice_3")
+            Choice_4 = request.POST.get("choice_4")
+            answer = request.POST.get("answer")
+            quiz = add_question.objects.create(quiz_id1=quiz_id1, question=question, Choice_1=Choice_1, Choice_2=Choice_2, Choice_3=Choice_3, Choice_4=Choice_4, answer=answer)
+            quiz.save()
+            print("Total questions : ", qu_no)
+            print("Entered questions : ", count.questions_entered)
             return render(request, "add_question.html")
         else:
-            return HttpResponse("done")
+            messages.info(request, "invalid method")
+            return render(request, "teacher_navbar_dashboard.html")
     else:
-        messages.info(request, "invalid method")
-        return render(request, "teacher_navbar_dashboard.html")
+        return HttpResponse("done")
 
 
 def check_my_answer(request):
@@ -102,6 +105,18 @@ def check_my_answer(request):
 
 def final_score(request):
     return HttpResponse("Quiz Hello")
+
+
+def student_quiz(request):
+    return render(request, "play_quiz.html")
+
+
+def results_page(request):
+    return render(request, "result.html")
+
+
+def play_quiz(request):
+    return render(request, "plain.html")
 
 
 """

@@ -22,7 +22,7 @@ def login_confirm(request):
                 return render(request, "teacher_navbar_dashboard.html", {"tea_id": tid.id})
             elif user.is_student == 1:
                 auth.login(request, user)
-                return render(request, "student_navbar_dashboard.html")
+                return render(request, "student_dash.html")
         else:
             messages.info(request, 'Invalid Credentials !')
             return redirect('login')
