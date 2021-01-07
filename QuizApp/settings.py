@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'QuizApp.wsgi.application'
 
 
 # Shrey's mysql account
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -92,6 +92,7 @@ DATABASES = {
         'PORT': "3306",
     }
 }
+
 '''
 
 #Shruti's mysql account 
@@ -105,7 +106,7 @@ DATABASES = {
         'PORT': "3306",
     }
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
 
+from Quiz.models import Quiz_Details
+
 
 def login(request):
     return render(request, 'index.html')
@@ -22,7 +24,11 @@ def login_confirm(request):
                 return render(request, "teacher_navbar_dashboard.html", {"tea_id": tid.id})
             elif user.is_student == 1:
                 auth.login(request, user)
-                return render(request, "student_dash.html")
+                quiz = Quiz_Details.objects.all()[:3]
+                user_quiz={
+                    "quizes":quiz
+                }
+                return render(request, "student_dash.html",user_quiz)
         else:
             messages.info(request, 'Invalid Credentials !')
             return redirect('login')
