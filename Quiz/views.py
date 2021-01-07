@@ -106,7 +106,9 @@ def final_score(request):
     return HttpResponse("Quiz Hello")
 
 
-def student_quiz(request):
+def student_quiz(request,s_id):
+    stud_id = s_id
+    request.session["student_id"] = stud_id
     quiz = Quiz_Details.objects.all()
     user_quiz = {"quizes":quiz}
     return render(request, "play_quiz.html",user_quiz)
@@ -139,25 +141,41 @@ def check_answer(request,question_id):
         no_question = request.session["no_quest"]
     if "mark_per_question" in request.session:
         mark_per_question = request.session["mark_per_question"]
-
+    if "student_id" in request.session:
+        stud_id = request.session["student_id"]
+    quiz_id = Quiz_Details.objects.only("quiz_id").get(quiz_id = quiz_id1)
+    questi_id = add_question.objects.only("question_id").get(question_id = question_id)
+    stu_id = User.objects.only("id").get(id = stud_id)
     quiz_questions = add_question.objects.filter(quiz_id1=quiz_id1)[i:no_question]
     user_questions = {"user_questions":quiz_questions}
     if request.method == "POST":
         selected_answer = request.POST.get("radio")
-        print(selected_answer)
         quest = add_question.objects.only("answer").get(question_id = question_id)
-        que = quest.answer
-        print(que)
-        if selected_answer == que:
-            score = score + mark_per_question
-            print(score)
-        if i == no_question:
-            return HttpResponse("done")
-        i = i + 1
 
-        return render(request,"plain.html",user_questions)
+        que = quest.answer
+
+        if selected_answer == que:
+            check_result = True
+            score = score + mark_per_question
+
+        quiz_check = check_answers.objects.create(qu_id = quiz_id , ques_id = questi_id, st_id=stu_id,selected_answer = selected_answer, correct_answer = quest, check_result = check_result)
+        quiz_check.save()
+        total_mark = no_question * mark_per_question
+        if i == no_question:
+            percentage = (score * 100)/total_mark
+            if percentage >= 35:
+                status = "Pass"
+            else:
+                status = "Fail"
+            result = Result.objects.create(q_id = quiz_id, s_id = stu_id, score = score, status = status,total_marks = total_mark)
+            result.save()
+            return render(request,"plain2.html")
+        else:
+            i = i + 1
+            return render(request,"plain.html",user_questions)
     else:
-        return HttpResponse("Quiz Hello")
+        messages.info(request,"invalid method of sending the responses")
+        return redirect("student_quiz",stud_id)
 """
 def display_quiz(request):
     if request.session.has_key("tid"):

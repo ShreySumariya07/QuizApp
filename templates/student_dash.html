@@ -12,7 +12,7 @@
 	</div>
 	<nav id="navbar">
 		<ul>
-			<li><a href="{% url 'Quiz:student_quiz' %}">Quizzes</a></li>
+			<li><a href="{% url 'Quiz:student_quiz' s_id=s_id %}">Quizzes</a></li>
 			<li><a href="{% url 'Quiz:results_page' %}">Result</a></li>
 			<li><a href="#footer">Logout</a></li>
 		</ul>
@@ -48,11 +48,12 @@
                         No_of Questions: {{quiz.no_of_questions}}<br />
                         Marks_per_question: {{quiz.Mark_per_question}}<br />
                         Total_marks: {{quiz.total_marks}}</p>
-                    <button class="submit" style="float: right;" >Play</button>
+                    <button class="submit" style="float: right;" ><a href="{% url 'Quiz:play_quiz' quiz_id=quiz.quiz_id %}">Play</a></button>
 
                 </div>
             </div>
             {% endfor %}
+
 <!--            <div class="card-wrapper">-->
 <!--                <div class="card" style="padding-top: -5rem;">-->
 <!--                    <h2></h2>-->
@@ -67,10 +68,10 @@
 <!--                    <button class="submit" style="float: right;" >Play</button>-->
 <!--                </div>-->
 <!--            </div>-->
-            
+            </div>
         </div>
         <div  class="more">
-            <a href="{% url 'Quiz:student_quiz' %}" >More</a>
+            <a href="{% url 'Quiz:student_quiz' s_id=s_id %}" >More</a>
         </div>
         
     </section>

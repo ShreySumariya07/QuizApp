@@ -24,9 +24,11 @@ def login_confirm(request):
                 return render(request, "teacher_navbar_dashboard.html", {"tea_id": tid.id})
             elif user.is_student == 1:
                 auth.login(request, user)
+                sid = User.objects.only("id").get(email = email)
                 quiz = Quiz_Details.objects.all()[:3]
                 user_quiz={
-                    "quizes":quiz
+                    "quizes":quiz,
+                    "s_id":sid.id
                 }
                 return render(request, "student_dash.html",user_quiz)
         else:
