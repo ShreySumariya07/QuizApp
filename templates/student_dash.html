@@ -13,8 +13,8 @@
 	<nav id="navbar">
 		<ul>
 			<li><a href="{% url 'Quiz:student_quiz' s_id=s_id %}">Quizzes</a></li>
-			<li><a href="{% url 'Quiz:results_page' %}">Result</a></li>
-			<li><a href="#footer">Logout</a></li>
+			<li><a href="{% url 'Quiz:results_page' s_id=s_id %}">Result</a></li>
+			<li><a href="{% url 'Account:logout_confirm' %}">Logout</a></li>
 		</ul>
 	</nav>
 	<div class="sidebar">

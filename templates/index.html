@@ -12,7 +12,7 @@
 
 <body>
   <div class="cont">
-      <form action="{% url 'login_confirm' %}" method="POST">
+      <form action="{% url 'Account:login_confirm' %}" method="POST">
         {% csrf_token %}
           <div class="form sign-in">
             <h2>Sign In</h2>
@@ -54,7 +54,7 @@
           <span onclick="myfunction()" class="m-in">Sign In</span>
         </div>
       </div>
-      <form action="register_confirm" method="post">
+      <form action="{% url 'Account:register_confirm' %}" method="post">
         {% csrf_token %}
         <div class="form sign-up">
           <h2>Sign Up</h2>
