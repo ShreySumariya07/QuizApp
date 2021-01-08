@@ -28,7 +28,7 @@ def submit_quiz_details(request):
         total_marks = int(questions) * int(marks)
         teacher_id = User.objects.only("id").get(email=tname)
         update_on = date.today()
-        topic_id = Topic.objects.only("Topic_id").get(Topic_name = topic_name)
+        # topic_id = Topic.objects.only("Topic_id").get(Topic_name = topic_name)
         if Topic.objects.filter(Topic_name=topic_name).exists():
             topic_id = Topic.objects.only("Topic_id").get(Topic_name=topic_name)
             new_quiz = Quiz_Details.objects.create(quiz_name=quiz_name, quiz_topic=topic_id, no_of_questions=questions,
@@ -157,7 +157,8 @@ def check_answer(request,question_id):
         if selected_answer == que:
             check_result = True
             score = score + mark_per_question
-
+        else:
+            check_result = False
         quiz_check = check_answers.objects.create(qu_id = quiz_id , ques_id = questi_id, st_id=stu_id,selected_answer = selected_answer, correct_answer = quest, check_result = check_result)
         quiz_check.save()
         total_mark = no_question * mark_per_question
