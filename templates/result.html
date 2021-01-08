@@ -17,12 +17,14 @@
             <div class="card-wrapper">
 
                 <div class="card" style="padding-top: -5rem;">
-                    <h2>Quiz_name:</h2>
-                    <p> Total marks:{{result.score}}</p>
-                    <button class="submit" style="float: right;" >Result</button>
+                    <h2>Quiz_name:{{result.q_name.quiz_name}}</h2>
+                    <p> Total marks:{{ result.score }}</p>
+                    <p>{{result.id}}</p>
+                    <button class="submit" style="float: right;" ><a href="{% url 'Quiz:show_result' res_id=result.id %}">Result</a></button>
                 </div>
 
             </div>
+
                 {% endfor %}
             </div>
         </div>
