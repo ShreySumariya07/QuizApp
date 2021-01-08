@@ -18,5 +18,6 @@ urlpatterns = [
     path("show_quiz/<int:s_id>", views.student_quiz, name="student_quiz"),
     path("results_page/<int:s_id>/", views.results_page, name="results_page"),
     path("play_quiz/<int:quiz_id>/", views.play_quiz, name="play_quiz"),
+    path("show_result/<int:res_id>/",views.show_result,name="show_result")
     # path("display_quiz/",views.display_quiz,name="display_quiz")
 ]

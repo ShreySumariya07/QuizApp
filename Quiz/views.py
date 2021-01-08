@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import date
@@ -150,6 +152,7 @@ def check_answer(request,question_id):
     if "student_id" in request.session:
         stud_id = request.session["student_id"]
     quiz_id = Quiz_Details.objects.only("quiz_id").get(quiz_id = quiz_id1)
+    quizzz_name = Quiz_Details.objects.only("quiz_name").get(quiz_id = quiz_id1)
     questi_id = add_question.objects.only("question_id").get(question_id = question_id)
     stu_id = User.objects.only("id").get(id = stud_id)
     quiz_questions = add_question.objects.filter(quiz_id1=quiz_id1)[i:no_question]
@@ -174,16 +177,22 @@ def check_answer(request,question_id):
                 status = "Pass"
             else:
                 status = "Fail"
-            result = Result.objects.create(q_id = quiz_id, s_id = stu_id, score = score, status = status,total_marks = total_mark)
+            result = Result.objects.create(q_id = quiz_id, s_id = stu_id, score = score, status = status,total_marks = total_mark,q_name=quizzz_name)
             result.save()
             messages.info(request,"thanks for playing the quiz")
-            return redirect("results_page",stud_id)
+            return redirect("results_page",s_id=stud_id)
         else:
             i = i + 1
             return render(request,"plain.html",user_questions)
     else:
         messages.info(request,"invalid method of sending the responses")
         return redirect("student_quiz",stud_id)
+
+
+def show_result(request,res_id):
+    total_result = Result.objects.get(id=res_id)
+    question_result = check_answers.objects.filter(qu_id = total_result.q_id,st_id = total_result.s_id)
+    return render(request,"plain2.html",{"res":total_result,"question":question_result})
 
 
 def results_page(request,s_id):
@@ -195,12 +204,14 @@ def results_page(request,s_id):
     print(s_id)
     stu_id = User.objects.only("id").get(id=stud_id)
     stude_id = stu_id.id
-    print(stude_id)
+
     all_result = Result.objects.filter(s_id = stude_id)
-    print(all_result)
-    quiz_results_details = Quiz_Details.objects.filter(quiz_id__in = all_result.values_list("q_id",flat=True))
-    print(quiz_results_details)
-    return render(request, "result.html",{"all_res":all_result,"quiz_res":quiz_results_details})
+
+    # quiz_results_details = Quiz_Details.objects.filter(quiz_id__in = all_result.values_list("q_id",flat=True)).select_related("q_id_quiz_name")
+    # print(quiz_results_details).
+    # result_query = chain(all_result,quiz_results_details)
+    return render(request, "result.html", {"all_res":all_result})
+    # return render(request, "result.html",{"all_res":all_result,"quiz_res":quiz_results_details})
 """
 def display_quiz(request):
     if request.session.has_key("tid"):

@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="cont" >
-        <h1 style="text-align:center">Quiz_name</h1>
-        <h3 style="text-align:center">Marks_scored</h3>
-        <h4 style="text-align:center">Status:</h4>
+        <h1 style="text-align:center">Quiz_name:{{res.q_name.quiz_name}}</h1>
+        <h3 style="text-align:center">Marks_scored:{{res.score}} / {{res.total_marks}}</h3>
+        <h4 style="text-align:center">Status:{{res.status}}</h4>
         <table>
             <thead>
                 <tr>
@@ -22,12 +22,14 @@
                 </tr>
             </thead>
             <tbody>
+                {% for ques in question%}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ques.ques_id.question}}</td>
+                    <td>{{ques.correct_answer.answer}}</td>
+                    <td>{{ques.selected_answer}}</td>
+                    <td>{{ques.check_result}}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
