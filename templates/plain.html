@@ -9,38 +9,41 @@
 </head>
 <body>
     <div class="cont" >
-        <form id="myForm">
+        {% for user_quest in user_questions %}
+        <form id="myForm" method="POST" action="{% url 'Quiz:check_answer' question_id=user_quest.question_id %}">
+            {% csrf_token %}
             <section>
                 <div class="question" >  
-                    <textarea class="quest" type="text" placeholder="Enter Question"></textarea>
+                    <textarea class="quest" type="text" placeholder="Enter Question">{{user_quest.question}}</textarea>
                 </div>
             </section>
             <section>
                 <label class="container">
-                    <input class="inp" type="radio" name="radio">
+                    <input class="inp" type="radio" name="radio" value="{{user_quest.Choice_1}}">
                     <span class="checkmark"></span>
-                    <input class="opt" type="text" placeholder="Enter Option 1">
+                    {{user_quest.Choice_1}}
                 </label>
                 <label class="container">
-                    <input class="inp" type="radio" name="radio">
+                    <input class="inp" type="radio" name="radio" value="{{user_quest.Choice_2}}">
                     <span class="checkmark"></span>
-                    <input class="opt" type="text" placeholder="Enter Option 2">
+                    {{user_quest.Choice_2}}
                 </label>
                 <label class="container">
-                    <input class="inp" type="radio" name="radio">
+                    <input class="inp" type="radio" name="radio" value="{{user_quest.Choice_3}}">
                     <span class="checkmark"></span>
-                    <input class="opt" type="text" placeholder="Enter Option 3">
+                    {{user_quest.Choice_3}}
                 </label>
                 <label class="container">
-                    <input class="inp" type="radio" name="radio">
+                    <input class="inp" type="radio" name="radio" value="{{user_quest.Choice_4}}">
                     <span class="checkmark"></span>
-                    <input class="opt" type="text" placeholder="Enter Option 4">
+                    {{user_quest.Choice_4}}
                 </label>
             </section>
             <div class="btns">
                 <button class="added" >Next</button>
             </div>
         </form>
+        {% endfor %}
     </div>
     </div>
 </body>

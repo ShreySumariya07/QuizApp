@@ -13,13 +13,19 @@
             <h1 class="section-heading">Title</h1>
             <p>                </p>
             <div class="container-1">
+            {% for quiz in quizes%}
             <div class="card-wrapper">
                 <div class="card" style="padding-top: -5rem;">
                     <h2></h2>
-                    <p> ukatukAWgrkuwtr. kuwgfk.euvuvybuvgr aeiqUTR AkUFVA/ILAYTWEVIVY AU;AOY7BOWBTV\SE ILTHY/LRBWTBYE ILTE</p>
-                    <button class="submit" style="float: right;"><a href="{% url 'Quiz:play_quiz' %}">Play</a></button>
+                    <p> Quiz_number : {{quiz.quiz_id}}<br />
+                        Quiz_name : {{quiz.quiz_name}}<br />
+                        No_of Questions: {{quiz.no_of_questions}}<br />
+                        Marks_per_question: {{quiz.Mark_per_question}}<br />
+                        Total_marks: {{quiz.total_marks}}</p>
+                    <button class="submit" style="float: right;"><a href="{% url 'Quiz:play_quiz' quiz_id=quiz.quiz_id %}">Play</a></button>
                 </div>
             </div>
+            {% endfor %}
             </div>
         </div>
     </section>

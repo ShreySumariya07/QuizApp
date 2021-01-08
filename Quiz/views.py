@@ -48,6 +48,9 @@ def submit_quiz_details(request):
 
 def quiz_added(request, teacher_id):
     quiz = Quiz_Details.objects.filter(teacher_id=teacher_id)
+    user_quiz={
+        "quizes":quiz
+    }
     return render(request, 'display_index.html', user_quiz)
 
 
@@ -77,9 +80,9 @@ def save_question(request):
 
     count = Quiz_Details.objects.only("questions_entered").get(quiz_id=quiz_id12)
 
-    if count.questions_entered <= qu_no:
+    if count.questions_entered < qu_no:
         count.questions_entered += 1
-        count.save(update_fields=['questions_entered'])
+        count.save()
         if request.method == "POST":
             question = request.POST.get("question")
             Choice_1 = request.POST.get("choice_1")
@@ -99,26 +102,80 @@ def save_question(request):
         return HttpResponse("done")
 
 
-def check_my_answer(request):
-    return HttpResponse("Quiz Hello")
-
-
 def final_score(request):
     return HttpResponse("Quiz Hello")
 
 
-def student_quiz(request):
-    return render(request, "play_quiz.html")
+def student_quiz(request,s_id):
+    stud_id = s_id
+    request.session["student_id"] = stud_id
+    quiz = Quiz_Details.objects.all()
+    user_quiz = {"quizes":quiz}
+    return render(request, "play_quiz.html",user_quiz)
 
 
 def results_page(request):
     return render(request, "result.html")
 
 
-def play_quiz(request):
-    return render(request, "plain.html")
+def play_quiz(request,quiz_id):
+    quiz_questions = add_question.objects.filter(quiz_id1 = quiz_id)
+    no_quest = quiz_questions.count()
+    marks_per_questionss = Quiz_Details.objects.get(quiz_id = quiz_id)
+    marks_per_question = marks_per_questionss.Mark_per_question
+    request.session["mark_per_question"] = marks_per_question
+    request.session["quiz_id"] = quiz_id
+    request.session["no_quest"] = no_quest
 
+    user_questions = {"user_questions":quiz_questions}
+    return render(request, "plain.html",user_questions)
 
+score = 0
+i=1
+
+def check_answer(request,question_id):
+    global score,i
+    if "quiz_id" in request.session:
+        quiz_id1 = request.session["quiz_id"]
+    if "no_quest" in request.session:
+        no_question = request.session["no_quest"]
+    if "mark_per_question" in request.session:
+        mark_per_question = request.session["mark_per_question"]
+    if "student_id" in request.session:
+        stud_id = request.session["student_id"]
+    quiz_id = Quiz_Details.objects.only("quiz_id").get(quiz_id = quiz_id1)
+    questi_id = add_question.objects.only("question_id").get(question_id = question_id)
+    stu_id = User.objects.only("id").get(id = stud_id)
+    quiz_questions = add_question.objects.filter(quiz_id1=quiz_id1)[i:no_question]
+    user_questions = {"user_questions":quiz_questions}
+    if request.method == "POST":
+        selected_answer = request.POST.get("radio")
+        quest = add_question.objects.only("answer").get(question_id = question_id)
+
+        que = quest.answer
+
+        if selected_answer == que:
+            check_result = True
+            score = score + mark_per_question
+
+        quiz_check = check_answers.objects.create(qu_id = quiz_id , ques_id = questi_id, st_id=stu_id,selected_answer = selected_answer, correct_answer = quest, check_result = check_result)
+        quiz_check.save()
+        total_mark = no_question * mark_per_question
+        if i == no_question:
+            percentage = (score * 100)/total_mark
+            if percentage >= 35:
+                status = "Pass"
+            else:
+                status = "Fail"
+            result = Result.objects.create(q_id = quiz_id, s_id = stu_id, score = score, status = status,total_marks = total_mark)
+            result.save()
+            return render(request,"plain2.html")
+        else:
+            i = i + 1
+            return render(request,"plain.html",user_questions)
+    else:
+        messages.info(request,"invalid method of sending the responses")
+        return redirect("student_quiz",stud_id)
 """
 def display_quiz(request):
     if request.session.has_key("tid"):
