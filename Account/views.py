@@ -4,6 +4,7 @@ from Account.models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
+from django.contrib.auth import *
 
 from Quiz.models import Quiz_Details
 
@@ -11,6 +12,9 @@ from Quiz.models import Quiz_Details
 def login(request):
     return render(request, 'index.html')
 
+def logout_confirm(request):
+    # logout(request)
+    return render(request,"homepage.html")
 
 def login_confirm(request):
     if request.method == 'POST':

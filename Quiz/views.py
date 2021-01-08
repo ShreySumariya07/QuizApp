@@ -27,6 +27,7 @@ def submit_quiz_details(request):
         tname = request.POST.get('email')
         total_marks = int(questions) * int(marks)
         teacher_id = User.objects.only("id").get(email=tname)
+        request.session["email_save"] = tname
         update_on = date.today()
         # topic_id = Topic.objects.only("Topic_id").get(Topic_name = topic_name)
         if Topic.objects.filter(Topic_name=topic_name).exists():
@@ -67,6 +68,7 @@ def to_add_question(request, qu_id):
 
 
 def save_question(request):
+    email_save_id = None
     qu_no = None
     quiz_id12 = None
 
@@ -79,6 +81,12 @@ def save_question(request):
         qu_no = request.session["ques_no"]
 
     count = Quiz_Details.objects.only("questions_entered").get(quiz_id=quiz_id12)
+
+    if "email_save" in request.session:
+        email_save_id = request.session["email_save"]
+    tea_id = User.objects.only("id").get(email = email_save_id)
+
+
 
     if count.questions_entered < qu_no:
         count.questions_entered += 1
@@ -97,9 +105,10 @@ def save_question(request):
             return render(request, "add_question.html")
         else:
             messages.info(request, "invalid method")
-            return render(request, "teacher_navbar_dashboard.html")
+            return render(request, "teacher_navbar_dashboard.html",{"tea_id": tea_id.id})
     else:
-        return HttpResponse("done")
+        messages.info(request,"Thanks for adding the questions")
+        return render(request, "teacher_navbar_dashboard.html",{"tea_id": tea_id.id})
 
 
 def final_score(request):
@@ -112,10 +121,6 @@ def student_quiz(request,s_id):
     quiz = Quiz_Details.objects.all()
     user_quiz = {"quizes":quiz}
     return render(request, "play_quiz.html",user_quiz)
-
-
-def results_page(request):
-    return render(request, "result.html")
 
 
 def play_quiz(request,quiz_id):
@@ -132,6 +137,7 @@ def play_quiz(request,quiz_id):
 
 score = 0
 i=1
+
 
 def check_answer(request,question_id):
     global score,i
@@ -170,13 +176,31 @@ def check_answer(request,question_id):
                 status = "Fail"
             result = Result.objects.create(q_id = quiz_id, s_id = stu_id, score = score, status = status,total_marks = total_mark)
             result.save()
-            return render(request,"plain2.html")
+            messages.info(request,"thanks for playing the quiz")
+            return redirect("results_page",stud_id)
         else:
             i = i + 1
             return render(request,"plain.html",user_questions)
     else:
         messages.info(request,"invalid method of sending the responses")
         return redirect("student_quiz",stud_id)
+
+
+def results_page(request,s_id):
+    # stud_id = None
+    # if "student_id" in request.session:
+    #     stud_id = request.session["student_id"]
+    #     print(stud_id)
+    stud_id = s_id
+    print(s_id)
+    stu_id = User.objects.only("id").get(id=stud_id)
+    stude_id = stu_id.id
+    print(stude_id)
+    all_result = Result.objects.filter(s_id = stude_id)
+    print(all_result)
+    quiz_results_details = Quiz_Details.objects.filter(quiz_id__in = all_result.values_list("q_id",flat=True))
+    print(quiz_results_details)
+    return render(request, "result.html",{"all_res":all_result,"quiz_res":quiz_results_details})
 """
 def display_quiz(request):
     if request.session.has_key("tid"):

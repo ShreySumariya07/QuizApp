@@ -13,13 +13,17 @@
             <h1 class="section-heading">Result</h1>
             <p>                </p>
             <div class="container-1">
+                {% for result in all_res %}
             <div class="card-wrapper">
+
                 <div class="card" style="padding-top: -5rem;">
-                    <h2></h2>
-                    <p> ukatukAWgrkuwtr. kuwgfk.euvuvybuvgr aeiqUTR AkUFVA/ILAYTWEVIVY AU;AOY7BOWBTV\SE ILTHY/LRBWTBYE ILTE</p>
+                    <h2>Quiz_name:</h2>
+                    <p> Total marks:{{result.score}}</p>
                     <button class="submit" style="float: right;" >Result</button>
                 </div>
+
             </div>
+                {% endfor %}
             </div>
         </div>
     </section>
