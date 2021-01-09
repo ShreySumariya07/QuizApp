@@ -54,4 +54,3 @@ class Result(models.Model):
     score = models.IntegerField()
     status = models.CharField(max_length=100,default=False)
     total_marks = models.IntegerField(default=0)
-    # total_m = models.ForeignKey(Quiz_Details,to_field="total_marks",db_column="total_m",on_delete=models.CASCADE,related_name="totalmarks")

@@ -4,7 +4,6 @@ from Account.models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from django.contrib.auth import *
 from Quiz.models import Quiz_Details
 
 
@@ -89,48 +88,3 @@ def register_confirm(request):
                 return render(request, "index.html")
     else:
         return render(request, "index.html")
-
-
-'''
-def regsiter(request):
-    if request.method == "POST":
-        teacher_student = request.POST.get("radio")
-        first_name = request.POST.get("first_name")
-        last_name = request.POST.get("last_name")
-        email = request.POST.get("email")
-        pass1 = request.POST.get("pass1")
-        pass2 = request.POST.get("pass2")
-        phone = request.POST.get("phone")
-        print(first_name)
-        user = User.objects.create_user(email=email,last_name=last_name,first_name=first_name,password=pass1,phone_no=phone, is_student=True)
-        user.save()
-        return render(request,"homepage.html")
-    else:
-        return render("test.html")
-
-
-# Create your views here.
-def login_as_student(request):
-    user = authenticate(username='Email', password='Password')
-    if user is not None:
-        return render(request, 'homepage.html')
-    else:
-        return redirect('index')
-
-
-def login_as_teacher(request):
-    user = authenticate(username='Email', password='Password')
-    if user is not None:
-        return render(request, 'homepage.html')
-    else:
-        return redirect('index')
-
-
-def register_as_student(request):
-    return render(request,'index.html')
-
-
-def register_as_teacher(request):
-    return render(request,'index.html')
-
-'''
