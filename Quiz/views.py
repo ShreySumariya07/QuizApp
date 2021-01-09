@@ -98,9 +98,11 @@ def save_question(request):
             quiz = add_question.objects.create(quiz_id1=quiz_id1, question=question, Choice_1=Choice_1,
                                                Choice_2=Choice_2, Choice_3=Choice_3, Choice_4=Choice_4, answer=answer)
             quiz.save()
-            print("Total questions : ", qu_no)
-            print("Entered questions : ", count.questions_entered)
-            return render(request, "add_question.html")
+            if count.questions_entered < qu_no:
+                return render(request, "add_question.html")
+            else:
+                messages.info(request,"All Questions added")
+                return render(request, "teacher_navbar_dashboard.html", {"tea_id": tea_id.id})
         else:
             messages.info(request, "invalid method")
             return render(request, "teacher_navbar_dashboard.html", {"tea_id": tea_id.id})
@@ -201,3 +203,16 @@ def results_page(request, s_id):
     stude_id = stu_id.id
     all_result = Result.objects.filter(s_id=stude_id)
     return render(request, "result.html", {"all_res": all_result})
+
+
+def result_quiz(request, teacher_id):
+    quiz = Quiz_Details.objects.filter(teacher_id=teacher_id)
+    user_quiz = {
+        "quizes": quiz
+    }
+    return render(request, "display_results.html", user_quiz)
+
+
+def students_result(request, quiz_id):
+    all_students = Result.objects.filter(q_id=quiz_id)
+    return render(request, "students_result.html", {"stu_details": all_students})

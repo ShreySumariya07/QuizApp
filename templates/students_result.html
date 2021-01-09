@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>..</title>
+    <link rel="stylesheet" href="{% static 'css/display_style.css' %}">
+</head>
+<body>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h1 class="section-heading"><span></span>Apratim Quiz</h1>
+            <p>                </p>
+            <div class="container-1">
+                {% for all_stud in stu_details %}
+                <div class="card-wrapper">
+
+                    <div class="card" style="padding-top: -5rem;">
+                        <h2 style="text-align:center">{{all_stud.s_id.first_name}}</h2>
+                        <p style="float left">Quiz_Topic: {{all_stud.q_id.quiz_topic.Topic_name}}<br />
+                            Score : {{all_stud.score}} / {{all_stud.total_marks}}<br />
+                            Status: {{all_stud.status}}<br />
+                        </p>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

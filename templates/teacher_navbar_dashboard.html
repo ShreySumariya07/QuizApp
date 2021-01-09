@@ -42,7 +42,7 @@
 			<div id="btn">
 				<button class="btns" ><a href="{% url 'Quiz:quiz_details' %}">Add Quiz</a></button>
 				<button class="btns" ><a href="{% url 'Quiz:quiz_added' teacher_id=tea_id %}">Quizzes</a></button>
-				<button class="btns">Student Template</button>
+				<button class="btns"><a href="{% url 'Quiz:result_quiz' teacher_id=tea_id %}" >Student Template</a></button>
 			</div>
 		  </div>
 		</div>
