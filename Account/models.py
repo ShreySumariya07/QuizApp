@@ -9,17 +9,6 @@ class User(AbstractUser):
     is_student = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['phone_no', 'is_teacher', 'is_student']
-'''
-    def create_superuser(self, email, date_of_birth, password=None):
-        user = self.create_user(
-            email,
-            password=password,
-            date_of_birth=date_of_birth,
-        )
-        user.is_admin = True
-        user.save(using=self._db)
-        return user
-'''
 
 
 class Student(models.Model):
