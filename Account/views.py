@@ -5,16 +5,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.contrib.auth import *
-
 from Quiz.models import Quiz_Details
 
 
 def login(request):
     return render(request, 'index.html')
 
+
 def logout_confirm(request):
-    # logout(request)
-    return render(request,"homepage.html")
+    return render(request, "homepage.html")
+
 
 def login_confirm(request):
     if request.method == 'POST':
@@ -30,11 +30,11 @@ def login_confirm(request):
                 auth.login(request, user)
                 sid = User.objects.only("id").get(email = email)
                 quiz = Quiz_Details.objects.all()[:3]
-                user_quiz={
-                    "quizes":quiz,
-                    "s_id":sid.id
+                user_quiz = {
+                    "quizes": quiz,
+                    "s_id": sid.id
                 }
-                return render(request, "student_dash.html",user_quiz)
+                return render(request, "student_dash.html", user_quiz)
         else:
             messages.info(request, 'Invalid Credentials !')
             return redirect('login')

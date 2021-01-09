@@ -180,13 +180,13 @@ def check_answer(request,question_id):
             result = Result.objects.create(q_id = quiz_id, s_id = stu_id, score = score, status = status,total_marks = total_mark,q_name=quizzz_name)
             result.save()
             messages.info(request,"thanks for playing the quiz")
-            return redirect("results_page",s_id=stud_id)
+            return redirect("Quiz:results_page", s_id=stud_id)
         else:
             i = i + 1
             return render(request,"plain.html",user_questions)
     else:
         messages.info(request,"invalid method of sending the responses")
-        return redirect("student_quiz",stud_id)
+        return redirect("student_quiz", stud_id)
 
 
 def show_result(request,res_id):
@@ -195,7 +195,7 @@ def show_result(request,res_id):
     return render(request,"plain2.html",{"res":total_result,"question":question_result})
 
 
-def results_page(request,s_id):
+def results_page(request, s_id):
     # stud_id = None
     # if "student_id" in request.session:
     #     stud_id = request.session["student_id"]

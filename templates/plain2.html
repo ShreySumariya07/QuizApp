@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="{% static 'css/plain.css' %}">
 </head>
 <body>
-    <div class="cont" >
-        <h1 style="text-align:center">Quiz_name:{{res.q_name.quiz_name}}</h1>
-        <h3 style="text-align:center">Marks_scored:{{res.score}} / {{res.total_marks}}</h3>
-        <h4 style="text-align:center">Status:{{res.status}}</h4>
-        <table>
+    <div class="cont" style="overflow: auto" >
+        <h1 style="text-align:center">Quiz_name:{{res.q_name.quiz_name}}</h1><br>
+        <h3 style="text-align:center">Marks_scored:{{res.score}} / {{res.total_marks}}</h3><br>
+        <h4 style="text-align:center">Status:{{res.status}}</h4><br>
+        <br><br>
+        <table style="align:center">
             <thead>
                 <tr>
                     <th>Question</th>
