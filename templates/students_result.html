@@ -11,8 +11,13 @@
 
     <section id="services" class="services">
         <div class="container">
-            <h1 class="section-heading"><span></span>Apratim Quiz</h1>
-            <p>                </p>
+            <h1 class="section-heading"><span></span>{{ stu_details.q_id.quiz_name }} Results</h1>
+            <button onclick="goBack()">Go Back</button>
+            <script>
+                function goBack() {
+                window.history.back();
+                }
+            </script>
             <div class="container-1">
                 {% for all_stud in stu_details %}
                 <div class="card-wrapper">

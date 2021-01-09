@@ -48,6 +48,7 @@ def submit_quiz_details(request):
 
 def quiz_added(request, teacher_id):
     quiz = Quiz_Details.objects.filter(teacher_id=teacher_id)
+    request.session["tea_id"] = teacher_id
     user_quiz = {
         "quizes": quiz
     }
@@ -60,10 +61,13 @@ def to_add_question(request, qu_id):
     request.session['quiz_id12'] = qu_id
     request.session['ques_no'] = q_no
     count = Quiz_Details.objects.only("questions_entered").get(quiz_id=qu_id)
-    if count.questions_entered <= q_no:
+    if count.questions_entered < q_no:
         return render(request, "add_question.html")
     else:
-        return HttpResponse("All questions already entered")
+        messages.info(request, "All questions already added")
+        if "tea_id" in request.session:
+            teach_id = request.session["tea_id"]
+        return redirect('Quiz:quiz_added', teach_id)
 
 
 def save_question(request):
