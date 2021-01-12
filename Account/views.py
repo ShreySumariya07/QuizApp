@@ -12,7 +12,7 @@ def login(request):
 
 
 def logout_confirm(request):
-    return render(request, "homepage.html")
+    return render(request, "homepage1.html")
 
 
 def login_confirm(request):
@@ -24,7 +24,7 @@ def login_confirm(request):
             if user.is_teacher == 1:
                 auth.login(request, user)
                 tid = User.objects.only("id").get(email=email)
-                return render(request, "teacher_navbar_dashboard.html", {"tea_id": tid.id})
+                return render(request, "teacher_navbar_dashboard1.html", {"tea_id": tid.id})
             elif user.is_student == 1:
                 auth.login(request, user)
                 sid = User.objects.only("id").get(email = email)
@@ -33,7 +33,7 @@ def login_confirm(request):
                     "quizes": quiz,
                     "s_id": sid.id
                 }
-                return render(request, "student_dash.html", user_quiz)
+                return render(request, "student_dash1.html", user_quiz)
         else:
             messages.info(request, 'Invalid Credentials !')
             return redirect('login')

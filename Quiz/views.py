@@ -106,13 +106,13 @@ def save_question(request):
                 return render(request, "add_question.html")
             else:
                 messages.info(request,"All Questions added")
-                return render(request, "teacher_navbar_dashboard.html", {"tea_id": tea_id.id})
+                return render(request, "teacher_navbar_dashboard1.html", {"tea_id": tea_id.id})
         else:
             messages.info(request, "invalid method")
-            return render(request, "teacher_navbar_dashboard.html", {"tea_id": tea_id.id})
+            return render(request, "teacher_navbar_dashboard1.html", {"tea_id": tea_id.id})
     else:
         messages.info(request, "Thanks for adding the questions")
-        return render(request, "teacher_navbar_dashboard.html", {"tea_id": tea_id.id})
+        return render(request, "teacher_navbar_dashboard1.html", {"tea_id": tea_id.id})
 
 
 def student_quiz(request, s_id):

@@ -11,7 +11,9 @@
     <section id="services" class="services">
         <div class="container">
             <h1 class="section-heading">Result</h1>
-            <button><a href="{% url 'Account:login_confirm' %}">Go Back</a></button>
+            <div style="margin-top:2rem;background:transparent;">
+            <button style="margin-top:2rem;background-color:transparent;font-size:1.5rem"><a href="{% url 'Account:login_confirm' %}" style="text-decoration:none;color:white">Go Back</a></button>
+            </div>
             <div class="container-1">
                 {% for result in all_res %}
             <div class="card-wrapper">
@@ -20,7 +22,7 @@
                     <h2>Quiz_name:{{result.q_name.quiz_name}}</h2>
                     <p> Total marks:{{ result.score }}</p>
                     <p>{{result.id}}</p>
-                    <button class="submit" style="float: right;" ><a href="{% url 'Quiz:show_result' res_id=result.id %}">Result</a></button>
+                    <button class="submit" style="float: right;" ><a href="{% url 'Quiz:show_result' res_id=result.id %}" style="text-decoration:none;color:white">Result</a></button>
                 </div>
 
             </div>

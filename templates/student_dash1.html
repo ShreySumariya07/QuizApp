@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QUIZ</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/student_dash12.css' %}">
+</head>
+<body>
+	<div id="header">
+		<h1>QUIZ PLANET</h1>
+	</div>
+	<nav id="navbar">
+		<ul>
+			<li><a href="{% url 'Quiz:student_quiz' s_id=s_id %}">Quizzes</a></li>
+			<li><a href="{% url 'Quiz:results_page' s_id=s_id %}">Result</a></li>
+			<li><a href="{% url 'Account:logout_confirm' %}">Logout</a></li>
+		</ul>
+	</nav>
+	<div class="sidebar">
+	
+	<div class="row">
+		<div class="leftcolumn">
+		  <div class="card">
+			<h2 style="text-align: center; padding-bottom: 3rem; font-size: 2.7rem; font-weight: 500; font-style: italic;">Exams that educate, not frustrate</h2>
+			<h5  style="font-size: 1.5rem;display: inline; padding-left: 8rem;color: rgb(12,26,45) ;padding-bottom: 1rem;">Attempt exam from wherever you are</h5>
+			<img src="{% static './images/lock.jpg' %}" alt="" style="height: 150px; float: right;margin-top: -3rem;padding-right: 2rem;">
+			<p style="color: rgb(123,125,127);text-align: center; font-size: 22px; font-weight: 100; padding-left: 2rem;padding-right: 1rem;padding-bottom: 5rem; display: flex;padding-top: 1rem;">Take exams remotely or on-the-go on any internet-enabled device - just log in and get going!</p>
+			<h5  style="font-size: 1.5rem; padding-left: 30rem;color: rgb(12,26,45) ; padding-bottom: 1rem;">Get feedback that helps you improve</h5>
+			<img src="{% static './images/Screenshot 2021-01-12 133428.jpg' %}" alt="" style="height: 150px; float: left;margin-top: -4rem; padding-left: 2rem;">
+			<p style="color: rgb(123,125,127);text-align: center; font-size: 22px; font-weight: 100; padding-left: 2rem;padding-right: 1rem;padding-bottom: 5rem; display: flex;">Know where you stand with your results benchmarked against toppers in your batch and across India</p>
+			<h5  style="font-size: 1.5rem;display: inline; padding-left: 22rem;color: rgb(12,26,45) ;">Stop waiting, get results instantly</h5>
+			<img src="{% static './images/Screenshot 2021-01-12 133457.jpg' %}" alt="" style="height:150px; float: right;margin-top: -1rem;padding-right: 2rem;">
+			<p style="color: rgb(123,125,127);text-align: center;padding-top: 1rem; font-size: 22px; font-weight: 100; padding-left: 2rem;padding-right: 1rem;padding-bottom: 5rem; display: flex;">Automated evaluation means immediate results and insights to save your precious time as you tweak your preparation</p>
+		  </div>
+        </div>
+    </div>
+    <div id="header">
+		<h1 style="padding-top: 1rem;">Quizes</h1>
+	</div>
+    <section id="services" class="services">
+        <div class="container">
+            
+            <p>                </p>
+
+            <div class="container-1">
+            {% for quiz in quizes %}
+            <div class="card-wrapper">
+
+                <div class="card" style="padding-top: -5rem;">
+
+                    <h2></h2>
+                    <p> Quiz_number : {{quiz.quiz_id}}<br />
+                        Quiz_name : {{quiz.quiz_name}}<br />
+                        No_of Questions: {{quiz.no_of_questions}}<br />
+                        Marks_per_question: {{quiz.Mark_per_question}}<br />
+                        Total_marks: {{quiz.total_marks}}</p>
+                    <button class="submit" style="float: right;" ><a href="{% url 'Quiz:play_quiz' quiz_id=quiz.quiz_id %}">Play</a></button>
+
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="more">
+            <a href="{% url 'Quiz:student_quiz' s_id=s_id %}" style="color: white;" >More</a>
+        </div>
+        
+    </section>
+</body>
