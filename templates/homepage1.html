@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QUIZ</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/stylehome.css' %}">
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+</head>
+<body>
+	<div id="header">
+		<h1>QUIZ PLANET</h1>
+	</div>
+	<nav id="navbar">
+		<ul>
+			<li><a href="#main">Home</a></li>
+			<li><a href="#main">About Us</a></li>
+			<li><a href="{% url 'Account:login' %}">Login
+<!--				<select name="Login" id="Login">-->
+<!--					<option value="Teacher">Teacher</option>-->
+<!--					<option value="Student">Student</option>-->
+<!--				</select>-->
+			</a>
+			</li>
+			<li><a href="#footer">Contact Us</a></li>
+		</ul>
+	</nav>
+	<div class="sidebar">
+		
+	<!--</div>
+	<div class="row">
+		<div id="main" class="column">
+			<p>Quiz Planet is a fast-paced quiz game of diverse topics where you can compete against your friends and other players.<br>
+           		Test your knowledge with countless interesting quiz questions from various categories and move to the top of the leader board!
+           		What are you waiting for?!<br><br>Create Mock Tests for any possible examination and prepare your students..
+           		Play with your family and friends now!
+        	</p>
+		</div>
+		<div id="main">
+			<p>We have developed this app so that Teachers can make quizes with ease and help students in improving their knowledge.</p><br>
+			<img src="images/iit.png">   <img src="images/upsc.jpg">   <img src="images/gate.png">
+		</div>
+	</div>
+    <div id="footer">
+    	<h6>Quiz Planet</h6>
+    	<p>Contact Us</p> 
+        <ul>
+        	<li>+91 56844555</li>
+        	<li>ohdfcnsl@gmail.com</li>
+        </ul>
+	</div>-->
+	
+	<div class="row">
+		<div class="leftcolumn">
+		  <div class="card">
+			<h2 style="text-align: center; padding-bottom: 0.5rem; font-size: 3rem;font-style: italic;">Advanced online exam portal personalized for teachers</h2>
+			<h5 style="color: rgb(123,125,127);text-align: center; font-size: 20px; font-weight: 100; padding-left: 2rem;padding-right: 2rem;">We enable teachers to create, share, evaluate smart online exams in less than 5 min, and give valuable feedback to students with their self-branded exam portal.</h5>
+			<img src="{% static './images/Home-header-1.png' %}" alt="" style="align-items: center; height:300px; padding-left: 20rem;" >
+			<p style="text-align: center; padding-bottom: 0.5rem; font-size: 2.5rem; font-style: italic;" >Create, Conduct, Educate</p>
+		  </div>
+		  <div class="card">
+			<h2 style="text-align: center; padding-bottom: 0.5rem; font-size: 2.7rem; font-weight: 500; font-style: italic;">Exams that test your students, not you</h2>
+			<h5  style="font-size: 1.5rem;display: inline; padding-left: 8rem;color: rgb(12,26,45) ;">Create effective and customized exams easily</h5>
+			<img src="{% static './images/create-exam@2x.png' %}" alt="" style="height: 200px; float: right;margin-top: -1rem;padding-right: 2rem;">
+			<p style="color: rgb(123,125,127);text-align: center; font-size: 22px; font-weight: 100; padding-left: 2rem;padding-right: 1rem;padding-bottom: 2rem; display: flex;">Get your students the practice and preparation they need through our question bank, or add your own questions and sections using our completely customizable exam-creation wizard.</p>
+			<h5  style="font-size: 1.5rem; padding-left: 18rem;color: rgb(12,26,45) ;">Monitor student performance effortlessly</h5>
+			<img src="{% static './images/monitor-exam@2x.png' %}" alt="" style="height: 200px; float: left;margin-top: -5rem; padding-left: 2rem;">
+			<p style="color: rgb(123,125,127);text-align: center; font-size: 22px; font-weight: 100; padding-left: 2rem;padding-right: 1rem;padding-bottom: 3rem; display: flex;">Get test results and evaluation instantly and directly in one place, making it easier for you to track class results and performance, identify optimal focus areas, and ensure better performance and learning.</p>
+			<h5  style="font-size: 1.5rem;display: inline; padding-left: 8rem;color: rgb(12,26,45) ;">Analyze individual students comprehensively</h5>
+			<img src="{% static './images/analyzed-exam@2x.png' %}" alt="" style="height: 200px; float: right;margin-top: -1rem;padding-right: 2rem;">
+			<p style="color: rgb(123,125,127);text-align: center; font-size: 22px; font-weight: 100; padding-left: 2rem;padding-right: 1rem;padding-bottom: 2rem; display: flex;">Deep dive into each student’s performance - our easy-to-use interface provides customized feedback so you can get insights into which topics they should focus on and what they can do to score better and get ready.
+
+			</p>
+		  </div>
+		</div>
+		<div class="rightcolumn">
+		  <div class="card">
+			<h2 style="padding-bottom:1rem;font-style: italic;">The right answer to your exam needs</h2>
+			<img src="{% static './images/about.jpg' %}" alt="" style="height:325px; float: right;margin-top: -1rem;padding-right: 0.5rem;">
+			<p style="color: rgb(123,125,127);text-align: center; font-size: 18px; font-weight: 100;">Individual teachers or educational institutions of all sizes can use MegaExams to automate exam creation and evaluation so that they can focus on teaching and improving their students’ performance.</p>
+		  </div>
+		  <div class="card">
+			<h3 style="padding-bottom:1rem;font-style: italic;">Create customized exams in just a few clicks</h3>
+			<div class="fakeimg"><p>Build customized exams with ease using our massive question bank and user-friendly exam creation wizard</p></div>
+			<div class="fakeimg"><p>Quiz Planet enables you to allocate your exams to students who can attempt them remotely, irrespective of their location</p></div>
+			<div class="fakeimg"><p>Track the performance of each one of your students across exams, with intelligent insights and performance reports they can use to improve</p></div>
+			<div class="fakeimg"><p>Real-time scoring and analytics for classes across time and exams help teachers build effective and efficient teaching plans</p></div>
+		  </div>
+		  <div class="card">
+			<h3 style="padding-bottom:1rem;font-style: italic;">Exams that educate,not frustrate</h3>
+			<p style="margin-top: -1rem;">Follow for more...</p>
+			<div class="social-media">
+				<ul>
+				  <li><img src="{% static 'images/facebook.png' %}"></li>
+				  <li><img src="{% static 'images/twitter.png' %}"></li>
+				  <li><img src="{% static 'images/linkedin.png' %}"></li>
+				  <li><img src="{% static 'images/instagram.png' %}"></li>
+				</ul>
+			</div>
+			<p>© 2021 Pvt Ltd. All Rights Reserved.</p>
+		  </div>
+		</div>
+	  </div>
+	  
+	  <div class="footer">
+		<h2>Quiz Planet</h2>
+		
+    	<p>Contact Us</p> 
+        <ul>
+        	<li>+91 56844555</li>
+        	<li>ohdfcnsl@gmail.com</li>
+        </ul>
+		  <div class="social-media">
+				<ul>
+				  <li><img src="{% static 'images/facebook.png' %}"></li>
+				  <li><img src="{% static 'images/twitter.png' %}"></li>
+				  <li><img src="{% static 'images/linkedin.png' %}"></li>
+				  <li><img src="{% static 'images/instagram.png' %}"></li>
+				</ul>
+			</div>
+	  </div>
+</body>
+</html>

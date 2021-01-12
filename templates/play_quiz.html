@@ -11,7 +11,7 @@
 <body>
     <section id="services" class="services">
         <div class="container">
-            <h1 class="section-heading">Title</h1>
+            <h1 class="section-heading" style="margin-top:5rem;font-size:3.5rem;color:white;">Quiz</h1>
             <p>                </p>
             <div class="container-1">
             {% for quiz in quizes%}
@@ -23,7 +23,7 @@
                         No_of Questions: {{quiz.no_of_questions}}<br />
                         Marks_per_question: {{quiz.Mark_per_question}}<br />
                         Total_marks: {{quiz.total_marks}}</p>
-                    <button class="submit" style="float: right;"><a href="{% url 'Quiz:play_quiz' quiz_id=quiz.quiz_id %}">Play</a></button>
+                    <button class="submit" style="float: right;"><a href="{% url 'Quiz:play_quiz' quiz_id=quiz.quiz_id %}" style="text-decoration:none;color:white">Play</a></button>
                 </div>
             </div>
             {% endfor %}
