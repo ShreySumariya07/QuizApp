@@ -20,8 +20,7 @@ A quiz application created in django to conduct mcq quizzes. The application has
 1) Install python3
 2) Install pip for python3
 3) Install virtualenv pip install virtualenv or pip3 install virtualenv
-4) Create virtual environment and cd into it virtualenv django-quiz --python python3 && cd django-quiz
+4) Create virtual environment and cd into it virtualenv QuizApp --python python3 && cd QuizApp
 5) Clone git repository into src folder and cd into it git clone <url> src && cd src
-6) Install requirements pip install -r requirements.txt or pip3 install -r requirements.txt
-7) Make appropriate database changes to settings module and make migrations using python manage.py makemigrations and then python manage.py migrate
-8) Run using python manage.py runserver
+6) Make appropriate database changes to settings module and make migrations using python manage.py makemigrations and then python manage.py migrate
+7) Run using python manage.py runserver
